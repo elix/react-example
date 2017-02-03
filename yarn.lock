@@ -162,7 +162,7 @@ babel-code-frame@^6.22.0:
     esutils "^2.0.2"
     js-tokens "^3.0.0"
 
-babel-core@^6.22.0, babel-core@^6.22.1:
+babel-core, babel-core@^6.22.0, babel-core@^6.22.1:
   version "6.22.1"
   resolved "https://registry.yarnpkg.com/babel-core/-/babel-core-6.22.1.tgz#9c5fd658ba1772d28d721f6d25d968fc7ae21648"
   dependencies:
@@ -620,6 +620,10 @@ crypto-browserify@^3.11.0:
     pbkdf2 "^3.0.3"
     public-encrypt "^4.0.0"
     randombytes "^2.0.0"
+
+custom-elements@webcomponents/custom-elements#master:
+  version "1.0.0-alpha.3"
+  resolved "https://codeload.github.com/webcomponents/custom-elements/tar.gz/36451e1dbe4e3b77d98499fc12132573d91d4a8b"
 
 dashdash@^1.12.0:
   version "1.14.1"
@@ -1799,6 +1803,14 @@ sha.js@^2.3.6:
   dependencies:
     inherits "^2.0.1"
 
+shadycss@webcomponents/shadycss#master:
+  version "0.0.1"
+  resolved "https://codeload.github.com/webcomponents/shadycss/tar.gz/bea402db5e416e20b2a706d46bccaa673265b6f3"
+
+shadydom@webcomponents/shadydom#master:
+  version "0.0.1"
+  resolved "https://codeload.github.com/webcomponents/shadydom/tar.gz/50bcf0ab420b1753d73e8ce39262222490bde0a2"
+
 signal-exit@^3.0.0:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
@@ -1944,6 +1956,10 @@ tar@~2.2.1:
     fstream "^1.0.2"
     inherits "2"
 
+template@webcomponents/template#master:
+  version "0.0.1"
+  resolved "https://codeload.github.com/webcomponents/template/tar.gz/81ba4335a21f96ea58c6a5129ce4b2482fb6c1b2"
+
 timers-browserify@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/timers-browserify/-/timers-browserify-2.0.2.tgz#ab4883cf597dcd50af211349a00fbca56ac86b86"
@@ -2054,6 +2070,10 @@ watchpack@^1.2.0:
     async "^2.1.2"
     chokidar "^1.4.3"
     graceful-fs "^4.1.2"
+
+webcomponents-platform@webcomponents/webcomponents-platform#master:
+  version "0.0.1"
+  resolved "https://codeload.github.com/webcomponents/webcomponents-platform/tar.gz/203270306f3beeceae0229f60dbf66dba18f3c18"
 
 webpack-sources@^0.1.4:
   version "0.1.4"

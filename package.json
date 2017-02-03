@@ -4,9 +4,15 @@
   "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.22.2",
+    "babel-core": "^6.22.1",
     "babel-loader": "^6.2.10",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.22.0",
     "babel-plugin-transform-react-jsx": "^6.22.0",
+    "custom-elements": "webcomponents/custom-elements#master",
+    "shadycss": "webcomponents/shadycss#master",
+    "shadydom": "webcomponents/shadydom#master",
+    "template": "webcomponents/template#master",
+    "webcomponents-platform": "webcomponents/webcomponents-platform#master",
     "webpack": "^2.2.0"
   },
   "dependencies": {
