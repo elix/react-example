@@ -3,22 +3,25 @@ import ReactDOM from 'react-dom';
 import ListBox from 'elix/elements/demos/src/ListBox';
 
 
+const items = [
+  'Acai',
+  'Acerola',
+  'Apple',
+  'Apricot',
+  'Banana',
+  'Blackberry',
+  'Blueberry',
+  'Cantaloupe',
+  'Cherry'
+];
+
+
 class App extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      items: [
-        'Acai',
-        'Acerola',
-        'Apple',
-        'Apricot',
-        'Banana',
-        'Blackberry',
-        'Blueberry',
-        'Cantaloupe',
-        'Cherry'
-      ],
+      items: items,
       selectedIndex: 0
     };
   }
