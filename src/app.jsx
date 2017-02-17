@@ -1,19 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ListBox from 'elix/elements/demos/src/ListBox';
-
-
-const items = [
-  'Acai',
-  'Acerola',
-  'Apple',
-  'Apricot',
-  'Banana',
-  'Blackberry',
-  'Blueberry',
-  'Cantaloupe',
-  'Cherry'
-];
+import items from './items';
 
 
 class App extends React.Component {
@@ -44,7 +32,11 @@ class App extends React.Component {
         <p>
           Selection: {this.state.items[this.state.selectedIndex]}
         </p>
-        <sample-list-box ref="list" selected-index={this.state.selectedIndex}>
+        <sample-list-box
+            ref="list"
+            aria-label="Fruits"
+            selected-index={this.state.selectedIndex}
+            style={{height: "295px", maxWidth: "400px"}}>
           {itemElements}
         </sample-list-box>
       </div>
