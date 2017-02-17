@@ -1,8 +1,8 @@
-/node_modules/
+/node_modules
 
-# Include node modules required by demos on GitHub Pages.
-!/node_modules/webcomponents-platform/
-!/node_modules/custom-elements/
-!/node_modules/template/
-!/node_modules/shadycss/
-!/node_modules/shadydom/
+# Include node module files required by demos on GitHub Pages.
+!/node_modules/@webcomponents/custom-elements/custom-elements.min.js
+!/node_modules/@webcomponents/shadycss/shadycss.min.js
+!/node_modules/@webcomponents/shadydom/shadydom.min.js
+!/node_modules/webcomponents-platform/webcomponents-platform.js
+!/node_modules/template/template.js
