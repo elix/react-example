@@ -1,2 +1,8 @@
 /node_modules/
-/dist/
+
+# Include node modules required by demos on GitHub Pages.
+!/node_modules/webcomponents-platform/
+!/node_modules/custom-elements/
+!/node_modules/template/
+!/node_modules/shadycss/
+!/node_modules/shadydom/
