@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ListBox from 'elix/elements/demos/src/ListBox';
+import ListBox from 'elix/elements/ListBox';
 import items from './items';
 
 
@@ -32,13 +32,13 @@ class App extends React.Component {
         <p>
           Selection: {this.state.items[this.state.selectedIndex]}
         </p>
-        <sample-list-box
+        <elix-list-box
             ref="list"
             aria-label="Fruits"
             selected-index={this.state.selectedIndex}
             style={{height: "295px", maxWidth: "400px"}}>
           {itemElements}
-        </sample-list-box>
+        </elix-list-box>
       </div>
     );
   }

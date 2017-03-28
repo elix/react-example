@@ -1,41 +1,41 @@
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
-
+/******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
-
+/******/
 /******/ 		// Check if module is in cache
 /******/ 		if(installedModules[moduleId])
 /******/ 			return installedModules[moduleId].exports;
-
+/******/
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = installedModules[moduleId] = {
 /******/ 			i: moduleId,
 /******/ 			l: false,
 /******/ 			exports: {}
 /******/ 		};
-
+/******/
 /******/ 		// Execute the module function
 /******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-
+/******/
 /******/ 		// Flag the module as loaded
 /******/ 		module.l = true;
-
+/******/
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-
-
+/******/
+/******/
 /******/ 	// expose the modules object (__webpack_modules__)
 /******/ 	__webpack_require__.m = modules;
-
+/******/
 /******/ 	// expose the module cache
 /******/ 	__webpack_require__.c = installedModules;
-
+/******/
 /******/ 	// identity function for calling harmony imports with the correct context
 /******/ 	__webpack_require__.i = function(value) { return value; };
-
+/******/
 /******/ 	// define getter function for harmony exports
 /******/ 	__webpack_require__.d = function(exports, name, getter) {
 /******/ 		if(!__webpack_require__.o(exports, name)) {
@@ -46,7 +46,7 @@
 /******/ 			});
 /******/ 		}
 /******/ 	};
-
+/******/
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
 /******/ 	__webpack_require__.n = function(module) {
 /******/ 		var getter = module && module.__esModule ?
@@ -55,15 +55,15 @@
 /******/ 		__webpack_require__.d(getter, 'a', getter);
 /******/ 		return getter;
 /******/ 	};
-
+/******/
 /******/ 	// Object.prototype.hasOwnProperty.call
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-
+/******/
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "";
-
+/******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 198);
+/******/ 	return __webpack_require__(__webpack_require__.s = 87);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -775,7 +775,7 @@ module.exports = ExecutionEnvironment;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Symbol__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Symbol__ = __webpack_require__(18);
 
 
 
@@ -1031,7 +1031,7 @@ const symbols = {
   template: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__Symbol__["a" /* default */])('template')
 };
 
-/* harmony default export */ __webpack_exports__["a"] = symbols;
+/* harmony default export */ __webpack_exports__["a"] = (symbols);
 
 
 /***/ }),
@@ -1397,7 +1397,7 @@ module.exports = ReactComponentTreeHook;
 var debugTool = null;
 
 if (process.env.NODE_ENV !== 'production') {
-  var ReactDebugTool = __webpack_require__(144);
+  var ReactDebugTool = __webpack_require__(146);
   debugTool = ReactDebugTool;
 }
 
@@ -1471,7 +1471,7 @@ var _prodInvariant = __webpack_require__(3),
 var CallbackQueue = __webpack_require__(60);
 var PooledClass = __webpack_require__(15);
 var ReactFeatureFlags = __webpack_require__(65);
-var ReactReconciler = __webpack_require__(19);
+var ReactReconciler = __webpack_require__(20);
 var Transaction = __webpack_require__(30);
 
 var invariant = __webpack_require__(1);
@@ -2742,6 +2742,61 @@ module.exports = reactProdInvariant;
 
 /***/ }),
 /* 18 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* The number of fake symbols we've served up */
+let count = 0;
+
+function uniqueString(description) {
+  return `_${description}${count++}`;
+}
+
+const symbolFunction = typeof window.Symbol === 'function' ?
+  window.Symbol :
+  uniqueString;
+
+/**
+ * Polyfill for ES6 symbol class.
+ *
+ * Mixins and component classes often want to associate private data with an
+ * element instance, but JavaScript does not have direct support for true
+ * private properties. One approach is to use the
+ * [Symbol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol)
+ * data type to set and retrieve data on an element.
+ *
+ * Unfortunately, the Symbol type is not available in Internet Explorer 11. In
+ * lieu of returning a true Symbol, this polyfill returns a different string
+ * each time it is called.
+ *
+ * Usage:
+ *
+ *     const fooSymbol = Symbol('foo');
+ *
+ *     class MyElement extends HTMLElement {
+ *       get foo() {
+ *         return this[fooSymbol];
+ *       }
+ *       set foo(value) {
+ *         this[fooSymbol] = value;
+ *       }
+ *     }
+ *
+ * In IE 11, this sample will "hide" data behind an instance property that looks
+ * like this._foo0. The underscore is meant to reduce (not eliminate) potential
+ * accidental access, and the unique number at the end is mean to avoid (not
+ * eliminate) naming conflicts.
+ *
+ * @function Symbol
+ * @param {string} description - A string to identify the symbol when debugging
+ * @returns {Symbol|string} — A Symbol (in ES6 browsers) or unique string ID (in
+ * ES5).
+ */
+/* harmony default export */ __webpack_exports__["a"] = (symbolFunction);
+
+
+/***/ }),
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2864,7 +2919,7 @@ DOMLazyTree.queueText = queueText;
 module.exports = DOMLazyTree;
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2880,7 +2935,7 @@ module.exports = DOMLazyTree;
 
 
 
-var ReactRef = __webpack_require__(158);
+var ReactRef = __webpack_require__(160);
 var ReactInstrumentation = __webpack_require__(9);
 
 var warning = __webpack_require__(2);
@@ -3038,7 +3093,7 @@ module.exports = ReactReconciler;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3056,16 +3111,16 @@ module.exports = ReactReconciler;
 
 var _assign = __webpack_require__(4);
 
-var ReactChildren = __webpack_require__(189);
+var ReactChildren = __webpack_require__(191);
 var ReactComponent = __webpack_require__(49);
-var ReactPureComponent = __webpack_require__(193);
-var ReactClass = __webpack_require__(190);
-var ReactDOMFactories = __webpack_require__(191);
+var ReactPureComponent = __webpack_require__(195);
+var ReactClass = __webpack_require__(192);
+var ReactDOMFactories = __webpack_require__(193);
 var ReactElement = __webpack_require__(16);
-var ReactPropTypes = __webpack_require__(192);
-var ReactVersion = __webpack_require__(194);
+var ReactPropTypes = __webpack_require__(194);
+var ReactVersion = __webpack_require__(196);
 
-var onlyChild = __webpack_require__(196);
+var onlyChild = __webpack_require__(198);
 var warning = __webpack_require__(2);
 
 var createElement = ReactElement.createElement;
@@ -3133,7 +3188,7 @@ module.exports = React;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3159,7 +3214,7 @@ module.exports = emptyObject;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3443,7 +3498,7 @@ module.exports = EventPluginHub;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3459,7 +3514,7 @@ module.exports = EventPluginHub;
 
 
 
-var EventPluginHub = __webpack_require__(22);
+var EventPluginHub = __webpack_require__(23);
 var EventPluginUtils = __webpack_require__(36);
 
 var accumulateInto = __webpack_require__(72);
@@ -3583,7 +3638,7 @@ module.exports = EventPropagators;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3636,7 +3691,7 @@ var ReactInstanceMap = {
 module.exports = ReactInstanceMap;
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3698,61 +3753,6 @@ function SyntheticUIEvent(dispatchConfig, dispatchMarker, nativeEvent, nativeEve
 SyntheticEvent.augmentClass(SyntheticUIEvent, UIEventInterface);
 
 module.exports = SyntheticUIEvent;
-
-/***/ }),
-/* 26 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* The number of fake symbols we've served up */
-let count = 0;
-
-function uniqueString(description) {
-  return `_${description}${count++}`;
-}
-
-const symbolFunction = typeof window.Symbol === 'function' ?
-  window.Symbol :
-  uniqueString;
-
-/**
- * Polyfill for ES6 symbol class.
- *
- * Mixins and component classes often want to associate private data with an
- * element instance, but JavaScript does not have direct support for true
- * private properties. One approach is to use the
- * [Symbol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol)
- * data type to set and retrieve data on an element.
- *
- * Unfortunately, the Symbol type is not available in Internet Explorer 11. In
- * lieu of returning a true Symbol, this polyfill returns a different string
- * each time it is called.
- *
- * Usage:
- *
- *     const fooSymbol = Symbol('foo');
- *
- *     class MyElement extends HTMLElement {
- *       get foo() {
- *         return this[fooSymbol];
- *       }
- *       set foo(value) {
- *         this[fooSymbol] = value;
- *       }
- *     }
- *
- * In IE 11, this sample will "hide" data behind an instance property that looks
- * like this._foo0. The underscore is meant to reduce (not eliminate) potential
- * accidental access, and the unique number at the end is mean to avoid (not
- * eliminate) naming conflicts.
- *
- * @function Symbol
- * @param {string} description - A string to identify the symbol when debugging
- * @returns {Symbol|string} — A Symbol (in ES6 browsers) or unique string ID (in
- * ES5).
- */
-/* harmony default export */ __webpack_exports__["a"] = symbolFunction;
-
 
 /***/ }),
 /* 27 */
@@ -4035,10 +4035,10 @@ module.exports = EventPluginRegistry;
 var _assign = __webpack_require__(4);
 
 var EventPluginRegistry = __webpack_require__(27);
-var ReactEventEmitterMixin = __webpack_require__(148);
+var ReactEventEmitterMixin = __webpack_require__(150);
 var ViewportMetrics = __webpack_require__(71);
 
-var getVendorPrefixedEventName = __webpack_require__(184);
+var getVendorPrefixedEventName = __webpack_require__(186);
 var isEventSupported = __webpack_require__(46);
 
 /**
@@ -4365,7 +4365,7 @@ module.exports = ReactBrowserEventEmitter;
 
 
 
-var SyntheticUIEvent = __webpack_require__(25);
+var SyntheticUIEvent = __webpack_require__(26);
 var ViewportMetrics = __webpack_require__(71);
 
 var getEventModifierState = __webpack_require__(44);
@@ -4977,8 +4977,8 @@ module.exports = shallowEqual;
 
 
 
-var DOMLazyTree = __webpack_require__(18);
-var Danger = __webpack_require__(121);
+var DOMLazyTree = __webpack_require__(19);
+var Danger = __webpack_require__(123);
 var ReactDOMComponentTree = __webpack_require__(5);
 var ReactInstrumentation = __webpack_require__(9);
 
@@ -5531,7 +5531,7 @@ module.exports = KeyEscapeUtils;
 
 var _prodInvariant = __webpack_require__(3);
 
-var React = __webpack_require__(20);
+var React = __webpack_require__(21);
 var ReactPropTypesSecret = __webpack_require__(70);
 
 var invariant = __webpack_require__(1);
@@ -5808,7 +5808,7 @@ module.exports = ReactErrorUtils;
 var _prodInvariant = __webpack_require__(3);
 
 var ReactCurrentOwner = __webpack_require__(12);
-var ReactInstanceMap = __webpack_require__(24);
+var ReactInstanceMap = __webpack_require__(25);
 var ReactInstrumentation = __webpack_require__(9);
 var ReactUpdates = __webpack_require__(11);
 
@@ -6722,7 +6722,7 @@ var _prodInvariant = __webpack_require__(17);
 var ReactNoopUpdateQueue = __webpack_require__(50);
 
 var canDefineProperty = __webpack_require__(52);
-var emptyObject = __webpack_require__(21);
+var emptyObject = __webpack_require__(22);
 var invariant = __webpack_require__(1);
 var warning = __webpack_require__(2);
 
@@ -7040,104 +7040,30 @@ module.exports = getIteratorFn;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["b"] = assignedChildren;
-/* unused harmony export assignedChildNodes */
-/* unused harmony export assignedTextContent */
-/* harmony export (immutable) */ __webpack_exports__["a"] = filterAuxiliaryElements;
+/* harmony export (immutable) */ __webpack_exports__["a"] = substantiveElements;
 /**
  * Helpers for accessing a component's content.
- *
- * The standard DOM API provides several ways of accessing child content:
- * `children`, `childNodes`, and `textContent`. None of these functions are
- * Shadow DOM aware. This mixin defines variations of those functions that
- * *are* Shadow DOM aware.
- *
- * Example: you create a component `<count-children>` that displays a number
- * equal to the number of children placed inside that component. If someone
- * instantiates your component like:
- *
- *     <count-children>
- *       <div></div>
- *       <div></div>
- *       <div></div>
- *     </count-children>
- *
- * Then the component should show "3", because there are three children. To
- * calculate the number of children, the component can just calculate
- * `this.children.length`. However, suppose someone instantiates your
- * component inside one of their own components, and puts a `<slot>` element
- * inside your component:
- *
- *     <count-children>
- *       <slot></slot>
- *     </count-children>
- *
- * If your component only looks at `this.children`, it will always see exactly
- * one child — the `<slot>` element. But the user looking at the page will
- * *see* any nodes distributed to that slot. To match what the user sees, your
- * component should expand any `<slot>` elements it contains.
- *
- * That is one problem these helpers solve. For example, the helper
- * `assignedChildren` will return all children assigned to your component in
- * the composed tree.
  *
  * @module content
  */
 
 /**
- * An in-order collection of distributed children, expanding any slot
- * elements. Like the standard `children` property, this skips text and other
- * node types which are not Element instances.
+ * Return a set of Elements which are likely to be useful as component content.
  *
- * @param {HTMLElement} element - the element to inspect
- * @returns {Element[]} - the children assigned to the element
- */
-function assignedChildren(element) {
-  return expandAssignedNodes(element.children, true);
-}
-
-/**
- * An in-order collection of distributed child nodes, expanding any slot
- * elements. Like the standard `childNodes` property, this includes text and
- * other types of nodes.
+ * Given a `NodeList` or array of objects, this will return only those array
+ * members that are: a) instances of `Element` (`HTMLElement` or `SVGElement`),
+ * and b) not on a blacklist of normally invisible elements (such as `style` or
+ * `script`). Among other things, this filters out Text nodes.
  *
- * @param {HTMLElement} element - the element to inspect
- * @returns {Node[]} - the nodes assigned to the element
- */
-function assignedChildNodes(element) {
-  return expandAssignedNodes(element.childNodes, false);
-}
-
-/**
- * The concatenated `textContent` of all distributed child nodes, expanding
- * any slot elements.
- *
- * @param {HTMLElement} element - the element to inspect
- * @type {string} - the text content of all nodes assigned to the element
- */
-function assignedTextContent(element) {
-  const strings = assignedChildNodes(element).map(
-    child => child.textContent
-  );
-  return strings.join('');
-}
-
-/**
- * Return the given elements, filtering out auxiliary elements that aren't
- * typically visible. Given a `NodeList` or array of objects, it will only
- * return array members that are instances of `Element` (`HTMLElement` or
- * `SVGElement`), and not on a blacklist of normally invisible elements
- * (such as `style` or `script`).
- *
- * @param {NodeList|Element[]} elements - the list of elements to filter
+ * @param {NodeList|Node[]} nodes - the list of nodes to filter
  * @returns {Element[]} - the filtered elements
  */
-function filterAuxiliaryElements(elements) {
+function substantiveElements(nodes) {
 
-  // These are tags that can appear in the document body, but do not seem to
-  // have any user-visible manifestation.
+  // These are tags for elements that can appear in the document body, but do
+  // not seem to have any user-visible manifestation.
   // See https://developer.mozilla.org/en-US/docs/Web/HTML/Element
-  const auxiliaryTags = [
+  const auxiliaryElementTags = [
     'applet',         // deprecated
     'basefont',       // deprecated
     'embed',
@@ -7158,44 +7084,10 @@ function filterAuxiliaryElements(elements) {
     'noembed'         // deprecated
   ];
 
-  return [].filter.call(elements,
-    element => element instanceof Element &&
-        (!element.localName || auxiliaryTags.indexOf(element.localName) < 0)
+  return [].filter.call(nodes,
+    node => node instanceof Element &&
+        (!node.localName || auxiliaryElementTags.indexOf(node.localName) < 0)
   );
-}
-
-//
-// Helpers for the helper functions
-//
-
-/*
- * Given a array of nodes, return a new array with any `slot` elements expanded
- * to the nodes assigned to those slots.
- *
- * If ElementsOnly is true, only Element instances are returned, as with the
- * standard `children` property. Otherwise, all nodes are returned, as in the
- * standard `childNodes` property.
- */
-function expandAssignedNodes(nodes, ElementsOnly) {
-  const expanded = Array.prototype.map.call(nodes, node => {
-
-    // We want to see if the node is an instanceof HTMLSlotELement, but
-    // that class won't exist if the browser that doesn't support native
-    // Shadow DOM and if the Shadow DOM polyfill hasn't been loaded. Instead,
-    // we do a simplistic check to see if the tag name is "slot".
-    const isSlot = typeof HTMLSlotElement !== 'undefined' ?
-      node instanceof HTMLSlotElement :
-      node.localName === 'slot';
-
-    return isSlot ?
-      node.assignedNodes({ flatten: true }) :
-      [node];
-  });
-  const flattened = [].concat(...expanded);
-  const result = ElementsOnly ?
-    flattened.filter(node => node instanceof Element) :
-    flattened;
-  return result;
 }
 
 
@@ -7211,34 +7103,41 @@ function expandAssignedNodes(nodes, ElementsOnly) {
  * [symbols.scrollTarget].
  *
  * If the element has a shadow root containing a default (unnamed) slot, this
- * returns the first ancestor of that slot that is styled with `overflow-y:
- * auto` or `overflow-y: scroll`. If the element has no default slot, or no
- * scrolling ancestor is found, the element itself is returned.
+ * returns the first ancestor of that slot that has either `overflow-x` or
+ * `overflow-y` styled as `auto` or `scroll`. If the element has no default
+ * slot, or no scrolling ancestor is found, the element itself is returned.
  *
  * @type {HTMLElement}
  */
 function defaultScrollTarget(element) {
-  const slot = element.shadowRoot && element.shadowRoot.querySelector('slot:not([name])');
-  return slot ?
-    getScrollingParent(slot, element) :
-    element;
+  const root = element.shadowRoot;
+  const slot = root && root.querySelector('slot:not([name])');
+  const scrollingParent = slot && getScrollingParent(slot.parentNode);
+  return scrollingParent || element;
 }
 
 
-// Return the parent of the given element that can be scroll vertically. If no
-// such element is found, return the given root element.
-function getScrollingParent(element, root) {
-  if (element === null || element === root) {
-    // Didn't find a scrolling parent; use the root element instead.
-    return root;
+// Return the parent of the given element that can be scrolled. If no such
+// element is found, return null.
+function getScrollingParent(element) {
+  // We test against DocumentFragment below instead of ShadowRoot, because the
+  // polyfill doesn't define the latter, and instead uses the former. In native
+  // Shadow DOM, a ShadowRoot is a subclass of DocumentFragment, so the same
+  // test works then too.
+  if (element === null || element instanceof DocumentFragment) {
+    // Didn't find a scrolling parent.
+    return null;
   }
-  const overflowY = getComputedStyle(element).overflowY;
-  if (overflowY === 'scroll' || overflowY === 'auto') {
-    // Found an element we can scroll vertically.
+  const style = getComputedStyle(element);
+  const overflowX = style.overflowX;
+  const overflowY = style.overflowY;
+  if (overflowX === 'scroll' || overflowX === 'auto' ||
+      overflowY === 'scroll' || overflowY === 'auto') {
+    // Found an element we can scroll.
     return element;
   }
   // Keep looking higher in the hierarchy for a scrolling parent.
-  return getScrollingParent(element.parentNode, root);
+  return getScrollingParent(element.parentNode);
 }
 
 
@@ -7369,7 +7268,7 @@ module.exports = focusNode;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
+/* WEBPACK VAR INJECTION */(function(global) {
 
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
@@ -7390,19 +7289,24 @@ module.exports = focusNode;
  *
  * The activeElement will be null only if the document or document body is not
  * yet defined.
+ *
+ * @param {?DOMDocument} doc Defaults to current document.
+ * @return {?DOMElement}
  */
-function getActiveElement() /*?DOMElement*/{
-  if (typeof document === 'undefined') {
+function getActiveElement(doc) /*?DOMElement*/{
+  doc = doc || global.document;
+  if (typeof doc === 'undefined') {
     return null;
   }
   try {
-    return document.activeElement || document.body;
+    return doc.activeElement || doc.body;
   } catch (e) {
-    return document.body;
+    return doc.body;
   }
 }
 
 module.exports = getActiveElement;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(200)))
 
 /***/ }),
 /* 59 */
@@ -7703,7 +7607,7 @@ var DOMProperty = __webpack_require__(14);
 var ReactDOMComponentTree = __webpack_require__(5);
 var ReactInstrumentation = __webpack_require__(9);
 
-var quoteAttributeValueForBrowser = __webpack_require__(185);
+var quoteAttributeValueForBrowser = __webpack_require__(187);
 var warning = __webpack_require__(2);
 
 var VALID_ATTRIBUTE_NAME_REGEX = new RegExp('^[' + DOMProperty.ATTRIBUTE_NAME_START_CHAR + '][' + DOMProperty.ATTRIBUTE_NAME_CHAR + ']*$');
@@ -8307,9 +8211,9 @@ module.exports = ReactHostComponent;
 
 
 
-var ReactDOMSelection = __webpack_require__(139);
+var ReactDOMSelection = __webpack_require__(141);
 
-var containsNode = __webpack_require__(104);
+var containsNode = __webpack_require__(106);
 var focusNode = __webpack_require__(57);
 var getActiveElement = __webpack_require__(58);
 
@@ -8438,23 +8342,23 @@ module.exports = ReactInputSelection;
 
 var _prodInvariant = __webpack_require__(3);
 
-var DOMLazyTree = __webpack_require__(18);
+var DOMLazyTree = __webpack_require__(19);
 var DOMProperty = __webpack_require__(14);
-var React = __webpack_require__(20);
+var React = __webpack_require__(21);
 var ReactBrowserEventEmitter = __webpack_require__(28);
 var ReactCurrentOwner = __webpack_require__(12);
 var ReactDOMComponentTree = __webpack_require__(5);
-var ReactDOMContainerInfo = __webpack_require__(131);
-var ReactDOMFeatureFlags = __webpack_require__(133);
+var ReactDOMContainerInfo = __webpack_require__(133);
+var ReactDOMFeatureFlags = __webpack_require__(135);
 var ReactFeatureFlags = __webpack_require__(65);
-var ReactInstanceMap = __webpack_require__(24);
+var ReactInstanceMap = __webpack_require__(25);
 var ReactInstrumentation = __webpack_require__(9);
-var ReactMarkupChecksum = __webpack_require__(153);
-var ReactReconciler = __webpack_require__(19);
+var ReactMarkupChecksum = __webpack_require__(155);
+var ReactReconciler = __webpack_require__(20);
 var ReactUpdateQueue = __webpack_require__(41);
 var ReactUpdates = __webpack_require__(11);
 
-var emptyObject = __webpack_require__(21);
+var emptyObject = __webpack_require__(22);
 var instantiateReactComponent = __webpack_require__(76);
 var invariant = __webpack_require__(1);
 var setInnerHTML = __webpack_require__(32);
@@ -8983,7 +8887,7 @@ module.exports = ReactMount;
 
 var _prodInvariant = __webpack_require__(3);
 
-var React = __webpack_require__(20);
+var React = __webpack_require__(21);
 
 var invariant = __webpack_require__(1);
 
@@ -9256,11 +9160,11 @@ module.exports = getTextContentAccessor;
 var _prodInvariant = __webpack_require__(3),
     _assign = __webpack_require__(4);
 
-var ReactCompositeComponent = __webpack_require__(128);
+var ReactCompositeComponent = __webpack_require__(130);
 var ReactEmptyComponent = __webpack_require__(64);
 var ReactHostComponent = __webpack_require__(66);
 
-var getNextDebugID = __webpack_require__(182);
+var getNextDebugID = __webpack_require__(184);
 var invariant = __webpack_require__(1);
 var warning = __webpack_require__(2);
 
@@ -9503,9 +9407,9 @@ module.exports = setTextContent;
 var _prodInvariant = __webpack_require__(3);
 
 var ReactCurrentOwner = __webpack_require__(12);
-var REACT_ELEMENT_TYPE = __webpack_require__(147);
+var REACT_ELEMENT_TYPE = __webpack_require__(149);
 
-var getIteratorFn = __webpack_require__(181);
+var getIteratorFn = __webpack_require__(183);
 var invariant = __webpack_require__(1);
 var KeyEscapeUtils = __webpack_require__(37);
 var warning = __webpack_require__(2);
@@ -9718,7 +9622,7 @@ var ReactCurrentOwner = __webpack_require__(12);
 var ReactComponentTreeHook = __webpack_require__(8);
 var ReactElement = __webpack_require__(16);
 
-var checkReactTypeSpec = __webpack_require__(195);
+var checkReactTypeSpec = __webpack_require__(197);
 
 var canDefineProperty = __webpack_require__(52);
 var getIteratorFn = __webpack_require__(53);
@@ -9971,36 +9875,21 @@ exports.default = ['Acai', 'Acerola', 'Apple', 'Apricot', 'Banana', 'Blackberry'
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__elix_mixins_src_ChildrenContentMixin__ = __webpack_require__(87);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__elix_mixins_src_ClickSelectionMixin__ = __webpack_require__(88);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__elix_mixins_src_ContentItemsMixin__ = __webpack_require__(89);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__elix_mixins_src_DirectionSelectionMixin__ = __webpack_require__(90);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__elix_mixins_src_KeyboardDirectionMixin__ = __webpack_require__(91);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__elix_mixins_src_KeyboardMixin__ = __webpack_require__(92);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__elix_mixins_src_KeyboardPagedSelectionMixin__ = __webpack_require__(93);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__elix_mixins_src_KeyboardPrefixSelectionMixin__ = __webpack_require__(94);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__elix_mixins_src_SelectionAriaMixin__ = __webpack_require__(95);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__elix_mixins_src_SelectionInViewMixin__ = __webpack_require__(96);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__elix_mixins_src_ShadowTemplateMixin__ = __webpack_require__(97);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__elix_mixins_src_SingleSelectionMixin__ = __webpack_require__(98);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__elix_mixins_src_symbols__ = __webpack_require__(7);
-/*
- * This is currently a demo of how multiple mixins cooperate to perform useful
- * functions.
- *
- * * The component uses ShadowTemplateMixin to populate its shadow root.
- * * A user can click on a child item, and ClickSelectionMixin will set the
- *   selected item.
- * * The SingleSelectionMixin will track the selected item, and map that to
- *   changes in the selection state of the selected/deselected items.
- * * The SelectionAriaMixin will reflect an item's selection state using ARIA
- *   attributes to support assistive devices like screen readers.
- *
- * This demo will eventually evolve into a complete list box component, but
- * at the moment omits many features, including support for Page Up/Page Down
- * keys, keeping the selected item in view, the ability to select an item
- * by typing its initial characters, and support for slot elements as children.
- */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_AttributeMarshallingMixin__ = __webpack_require__(88);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_ClickSelectionMixin__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_ContentItemsMixin__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_DefaultSlotContentMixin__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mixins_DirectionSelectionMixin__ = __webpack_require__(92);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__mixins_KeyboardDirectionMixin__ = __webpack_require__(93);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__mixins_KeyboardMixin__ = __webpack_require__(94);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__mixins_KeyboardPagedSelectionMixin__ = __webpack_require__(95);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__mixins_KeyboardPrefixSelectionMixin__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__mixins_SelectedItemTextValueMixin__ = __webpack_require__(97);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__mixins_SelectionAriaMixin__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__mixins_SelectionInViewMixin__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__mixins_ShadowTemplateMixin__ = __webpack_require__(100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__mixins_SingleSelectionMixin__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__mixins_symbols__ = __webpack_require__(7);
 
 
 
@@ -10018,45 +9907,46 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-// We want to apply a number of mixin functions to HTMLElement.
 const mixins = [
-  __WEBPACK_IMPORTED_MODULE_0__elix_mixins_src_ChildrenContentMixin__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__elix_mixins_src_ClickSelectionMixin__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_2__elix_mixins_src_ContentItemsMixin__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_3__elix_mixins_src_DirectionSelectionMixin__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_4__elix_mixins_src_KeyboardDirectionMixin__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_5__elix_mixins_src_KeyboardMixin__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_6__elix_mixins_src_KeyboardPagedSelectionMixin__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_7__elix_mixins_src_KeyboardPrefixSelectionMixin__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_8__elix_mixins_src_SelectionAriaMixin__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_9__elix_mixins_src_SelectionInViewMixin__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_10__elix_mixins_src_ShadowTemplateMixin__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_11__elix_mixins_src_SingleSelectionMixin__["a" /* default */]
+  __WEBPACK_IMPORTED_MODULE_0__mixins_AttributeMarshallingMixin__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__mixins_ClickSelectionMixin__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_2__mixins_ContentItemsMixin__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_3__mixins_DefaultSlotContentMixin__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_4__mixins_DirectionSelectionMixin__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_5__mixins_KeyboardDirectionMixin__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_6__mixins_KeyboardMixin__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_7__mixins_KeyboardPagedSelectionMixin__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_8__mixins_KeyboardPrefixSelectionMixin__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_9__mixins_SelectedItemTextValueMixin__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_10__mixins_SelectionAriaMixin__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_11__mixins_SelectionInViewMixin__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_12__mixins_ShadowTemplateMixin__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_13__mixins_SingleSelectionMixin__["a" /* default */]
 ];
 
-// The mixins are functions, so an efficient way to apply them all is with
-// reduce. This is just function composition. We end up with a base class we
-// can extend below.
+// Apply the above mixins to HTMLElement.
 const base = mixins.reduce((cls, mixin) => mixin(cls), HTMLElement);
 
 
 /**
  * A simple single-selection list box.
  *
- * This uses the base class we just created above, and adds in the behavior
- * unique to this list box element. As it turns out, much of this behavior is
- * also interesting to other components, and will eventually get factored into
- * other mixins.
+ * This component supports a generic visual style, ARIA support, and full
+ * keyboard navigation. See `KeyboardDirectionMixin`,
+ * `KeyboardPagedSelectionMixin`, and `KeyboardPrefixSelectionMixin` for
+ * keyboard details.
  *
  * @extends HTMLElement
- * @mixes ChildrenContentMixin
+ * @mixes AttributeMarshallingMixin
  * @mixes ClickSelectionMixin
  * @mixes ContentItemsMixin
+ * @mixes DefaultSlotContentMixin
  * @mixes DirectionSelectionMixin
  * @mixes KeyboardDirectionMixin
  * @mixes KeyboardMixin
  * @mixes KeyboardPagedSelectionMixin
  * @mixes KeyboardPrefixSelectionMixin
+ * @mixes SelectedItemTextValueMixin
  * @mixes SelectionAriaMixin
  * @mixes SelectionInViewMixin
  * @mixes ShadowTemplateMixin
@@ -10064,36 +9954,17 @@ const base = mixins.reduce((cls, mixin) => mixin(cls), HTMLElement);
  */
 class ListBox extends base {
 
-  // Map attribute changes to the corresponding property.
-  attributeChangedCallback(attributeName, oldValue, newValue) {
-    if (super.attributeChangedCallback) { super.attributeChangedCallback(attributeName, oldValue, newValue); }
-    const mapAttributeToProperty = {
-      'selected-index': 'selectedIndex'
-    };
-    const propertyName = mapAttributeToProperty[attributeName] || attributeName;
-    this[propertyName] = newValue;
-  }
-
-  // We define a collection of default property values which can be set in
-  // the constructor or connectedCallback. Defining the actual default values
-  // in those calls would complicate things if a subclass someday wants to
-  // define its own default value.
-  get [__WEBPACK_IMPORTED_MODULE_12__elix_mixins_src_symbols__["a" /* default */].defaults]() {
-    const defaults = super[__WEBPACK_IMPORTED_MODULE_12__elix_mixins_src_symbols__["a" /* default */].defaults] || {};
+  get [__WEBPACK_IMPORTED_MODULE_14__mixins_symbols__["a" /* default */].defaults]() {
+    const defaults = super[__WEBPACK_IMPORTED_MODULE_14__mixins_symbols__["a" /* default */].defaults] || {};
     // By default, we assume the list presents list items vertically.
     defaults.orientation = 'vertical';
     return defaults;
   }
 
   // Map item selection to a `selected` CSS class.
-  [__WEBPACK_IMPORTED_MODULE_12__elix_mixins_src_symbols__["a" /* default */].itemSelected](item, selected) {
-    if (super[__WEBPACK_IMPORTED_MODULE_12__elix_mixins_src_symbols__["a" /* default */].itemSelected]) { super[__WEBPACK_IMPORTED_MODULE_12__elix_mixins_src_symbols__["a" /* default */].itemSelected](item, selected); }
+  [__WEBPACK_IMPORTED_MODULE_14__mixins_symbols__["a" /* default */].itemSelected](item, selected) {
+    if (super[__WEBPACK_IMPORTED_MODULE_14__mixins_symbols__["a" /* default */].itemSelected]) { super[__WEBPACK_IMPORTED_MODULE_14__mixins_symbols__["a" /* default */].itemSelected](item, selected); }
     item.classList.toggle('selected', selected);
-  }
-
-  // Tell the browser which attributes we want to handle.
-  static get observedAttributes() {
-    return ['orientation', 'selected-index'];
   }
 
   /**
@@ -10104,25 +9975,21 @@ class ListBox extends base {
    * @type {string}
    */
   get orientation() {
-    return this[__WEBPACK_IMPORTED_MODULE_12__elix_mixins_src_symbols__["a" /* default */].orientation] || this[__WEBPACK_IMPORTED_MODULE_12__elix_mixins_src_symbols__["a" /* default */].defaults].orientation;
+    return this[__WEBPACK_IMPORTED_MODULE_14__mixins_symbols__["a" /* default */].orientation] || this[__WEBPACK_IMPORTED_MODULE_14__mixins_symbols__["a" /* default */].defaults].orientation;
   }
   set orientation(value) {
-    const changed = value !== this[__WEBPACK_IMPORTED_MODULE_12__elix_mixins_src_symbols__["a" /* default */].orientation];
-    this[__WEBPACK_IMPORTED_MODULE_12__elix_mixins_src_symbols__["a" /* default */].orientation] = value;
+    const changed = value !== this[__WEBPACK_IMPORTED_MODULE_14__mixins_symbols__["a" /* default */].orientation];
+    this[__WEBPACK_IMPORTED_MODULE_14__mixins_symbols__["a" /* default */].orientation] = value;
     if ('orientation' in base) { super.orientation = value; }
     // Reflect attribute for styling
-    if (this.getAttribute('orientation') !== value) {
-      this.setAttribute('orientation', value);
-    }
-    if (changed && this[__WEBPACK_IMPORTED_MODULE_12__elix_mixins_src_symbols__["a" /* default */].raiseChangeEvents]) {
+    this.reflectAttribute('orientation', value);
+    if (changed && this[__WEBPACK_IMPORTED_MODULE_14__mixins_symbols__["a" /* default */].raiseChangeEvents]) {
       const event = new CustomEvent('orientation-changed');
       this.dispatchEvent(event);
     }
   }
 
-  // Define a template that will be stamped into the Shadow DOM by the
-  // ShadowTemplateMixin.
-  get [__WEBPACK_IMPORTED_MODULE_12__elix_mixins_src_symbols__["a" /* default */].template]() {
+  get [__WEBPACK_IMPORTED_MODULE_14__mixins_symbols__["a" /* default */].template]() {
     return `
       <style>
       :host {
@@ -10176,8 +10043,8 @@ class ListBox extends base {
 }
 
 
-customElements.define('sample-list-box', ListBox);
-/* harmony default export */ __webpack_exports__["default"] = ListBox;
+customElements.define('elix-list-box', ListBox);
+/* harmony default export */ __webpack_exports__["default"] = (ListBox);
 
 
 /***/ }),
@@ -10187,7 +10054,7 @@ customElements.define('sample-list-box', ListBox);
 "use strict";
 
 
-module.exports = __webpack_require__(129);
+module.exports = __webpack_require__(131);
 
 
 /***/ }),
@@ -10197,136 +10064,274 @@ module.exports = __webpack_require__(129);
 "use strict";
 
 
-module.exports = __webpack_require__(20);
+module.exports = __webpack_require__(21);
 
 
 /***/ }),
 /* 87 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _react = __webpack_require__(86);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(85);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _ListBox = __webpack_require__(84);
+
+var _ListBox2 = _interopRequireDefault(_ListBox);
+
+var _items = __webpack_require__(83);
+
+var _items2 = _interopRequireDefault(_items);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+class App extends _react2.default.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      items: _items2.default,
+      selectedIndex: 0
+    };
+  }
+
+  componentDidMount() {
+    this.refs.list.addEventListener('selected-index-changed', event => {
+      this.setState({
+        selectedIndex: event.detail.selectedIndex
+      });
+    });
+  }
+
+  render() {
+    const itemElements = this.state.items && this.state.items.map(item => _react2.default.createElement(
+      'div',
+      { key: item },
+      item
+    ));
+    return _react2.default.createElement(
+      'div',
+      null,
+      _react2.default.createElement(
+        'h1',
+        null,
+        'React app with an Elix list box'
+      ),
+      _react2.default.createElement(
+        'p',
+        null,
+        'Selection: ',
+        this.state.items[this.state.selectedIndex]
+      ),
+      _react2.default.createElement(
+        'elix-list-box',
+        {
+          ref: 'list',
+          'aria-label': 'Fruits',
+          'selected-index': this.state.selectedIndex,
+          style: { height: "295px", maxWidth: "400px" } },
+        itemElements
+      )
+    );
+  }
+
+}
+
+_reactDom2.default.render(_react2.default.createElement(App, null), document.querySelector('#root'));
+
+/***/ }),
+/* 88 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__content__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__microtask__ = __webpack_require__(100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__symbols__ = __webpack_require__(7);
-/* harmony export (immutable) */ __webpack_exports__["a"] = ChildrenContentMixin;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__attributes__ = __webpack_require__(102);
+/* harmony export (immutable) */ __webpack_exports__["a"] = AttributeMarshallingMixin;
 
 
 
+// Memoized maps of attribute to property names and vice versa.
+const attributeToPropertyNames = {};
+const propertyNamesToAttributes = {};
 
 
 /**
- * Mixin which defines a component's `symbols.content` property as all
- * child elements, including elements distributed to the component's slots.
+ * Mixin which marshalls attributes to properties and vice versa.
  *
- * This also provides notification of changes to a component's content. It
- * will invoke a `symbols.contentChanged` method when the component is first
- * instantiated, and whenever its distributed children change. This is intended
- * to satisfy the Gold Standard checklist item for monitoring
- * [Content Changes](https://github.com/webcomponents/gold-standard/wiki/Content-Changes).
+ * If your component exposes a setter for a property, it's generally a good
+ * idea to let devs using your component be able to set that property in HTML
+ * via an element attribute. You can code that yourself by writing an
+ * `attributeChangedCallback`, or you can use this mixin to get a degree of
+ * automatic support.
  *
- * Example:
+ * This mixin implements an `attributeChangedCallback` that will attempt to
+ * convert a change in an element attribute into a call to the corresponding
+ * property setter. Attributes typically follow hyphenated names ("foo-bar"),
+ * whereas properties typically use camelCase names ("fooBar"). This mixin
+ * respects that convention, automatically mapping the hyphenated attribute
+ * name to the corresponding camelCase property name.
  *
- * ```
- * let base = ChildrenContentMixin(DistributedChildrenMixin(HTMLElement));
- * class CountingElement extends base {
+ * Example: You define a component using this mixin:
  *
- *   constructor() {
- *     super();
- *     let root = this.attachShadow({ mode: 'open' });
- *     root.innerHTML = `<slot></slot>`;
- *     this[symbols.shadowCreated]();
- *   }
+ *     class MyElement extends AttributeMarshallingMixin(HTMLElement) {
+ *       get fooBar() { return this._fooBar; }
+ *       set fooBar(value) { this._fooBar = value; }
+ *     }
+ *     customElements.define('my-element', MyElement);
  *
- *   [symbols.contentChanged]() {
- *     if (super[symbols.contentChanged]) { super[symbols.contentChanged](); }
- *     // Count the component's children, both initially and when changed.
- *     this.count = this.distributedChildren.length;
- *   }
+ * If someone then instantiates your component in HTML:
  *
- * }
- * ```
+ *     <my-element foo-bar="Hello"></my-element>
  *
- * Note that content change detection depends upon the element having at least
- * one `slot` element in its shadow subtree.
+ * Then, after the element has been upgraded, the `fooBar` setter will
+ * automatically be invoked with the initial value "Hello".
  *
- * This mixin is intended for use with the
- * [DistributedChildrenMixin](DistributedChildrenMixin.md). See that mixin for
- * a discussion of how that works. This ChildrenContentMixin
- * provides an easy way of defining the "content" of a component as the
- * component's distributed children. That in turn lets mixins like
- * [ContentItemsMixin](ContentItemsMixin.md) manipulate the children as list
- * items.
+ * Attributes can only have string values. If you'd like to convert string
+ * attributes to other types (numbers, booleans), you must implement parsing
+ * yourself.
  *
- * To receive `contentChanged` notification, this mixin expects a component to
- * invoke a method called `symbols.shadowCreated` after the component's shadow
- * root has been created and populated.
+ * This mixin also exposes helpers for reflecting attributes and classes to
+ * the element. These helpers can be invoked during a component's constructor;
+ * any attributes or classes set during the constructor are applied when the
+ * component's `connectedCallback` is invoked.
  *
- * Note: This mixin relies upon the browser firing `slotchange` events when the
- * contents of a `slot` change. Safari and the polyfills fire this event when a
- * custom element is first upgraded, while Chrome does not. This mixin always
- * invokes the `contentChanged` method after component instantiation so that the
- * method will always be invoked at least once. However, on Safari (and possibly
- * other browsers), `contentChanged` might be invoked _twice_ for a new
- * component instance.
- *
- * @module ChildrenContentMixin
+ * @module AttributeMarshallingMixin
  * @param base {Class} the base class to extend
  * @returns {Class} the extended class
  */
-function ChildrenContentMixin(base) {
+function AttributeMarshallingMixin(base) {
 
-  /**
-   * The class prototype added by the mixin.
-   */
-  class ChildrenContent extends base {
+  // The class prototype added by the mixin.
+  class AttributeMarshalling extends base {
 
-    constructor() {
-      super();
+    /*
+     * Handle a change to the attribute with the given name.
+     */
+    attributeChangedCallback(attributeName, oldValue, newValue) {
+      if (super.attributeChangedCallback) { super.attributeChangedCallback(); }
+      const propertyName = attributeToPropertyName(attributeName);
+      // If the attribute name corresponds to a property name, set the property.
+      if (propertyName in this) {
+        this[propertyName] = newValue;
+      }
+    }
 
-      // Make an initial call to contentChanged() so that the component can do
-      // initialization that it normally does when content changes.
-      //
-      // This will invoke contentChanged() handlers in other mixins. In order
-      // that those mixins have a chance to complete their own initialization,
-      // we add the contentChanged() call to the microtask queue.
-      __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__microtask__["a" /* default */])(() => {
-        if (this[__WEBPACK_IMPORTED_MODULE_2__symbols__["a" /* default */].contentChanged]) {
-          this[__WEBPACK_IMPORTED_MODULE_2__symbols__["a" /* default */].contentChanged]();
-        }
-      });
+    connectedCallback() {
+      if (super.connectedCallback) { super.connectedCallback(); }
+      // Reflect any attributes set during constructor.
+      __WEBPACK_IMPORTED_MODULE_0__attributes__["a" /* writePendingAttributes */](this);
+    }
+
+    static get observedAttributes() {
+      return attributesForClass(this);
     }
 
     /**
-     * The content of this component, defined to be the flattened array of
-     * children distributed to the component.
+     * Set/unset the attribute with the indicated name.
      *
-     * The default implementation of this property only returns instances of
-     * Element
+     * This method exists primarily to handle the case where an element wants to
+     * set a default property value that should be reflected as an attribute. An
+     * important limitation of custom element consturctors is that they cannot
+     * set attributes. A call to `reflectAttribute` during the constructor will
+     * be deferred until the element is connected to the document.
      *
-     * @type {HTMLElement[]}
+     * @param {string} attribute - The name of the *attribute* (not property) to set.
+     * @param {object} value - The value to set. If null, the attribute will be removed.
      */
-    get [__WEBPACK_IMPORTED_MODULE_2__symbols__["a" /* default */].content]() {
-      return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__content__["b" /* assignedChildren */])(this);
+    reflectAttribute(attribute, value) {
+      return __WEBPACK_IMPORTED_MODULE_0__attributes__["b" /* setAttribute */](this, attribute, value);
     }
 
-    [__WEBPACK_IMPORTED_MODULE_2__symbols__["a" /* default */].shadowCreated]() {
-      if (super[__WEBPACK_IMPORTED_MODULE_2__symbols__["a" /* default */].shadowCreated]) { super[__WEBPACK_IMPORTED_MODULE_2__symbols__["a" /* default */].shadowCreated](); }
-      // Listen to changes on all slots.
-      const slots = this.shadowRoot.querySelectorAll('slot');
-      slots.forEach(slot => slot.addEventListener('slotchange', event => {
-        if (this[__WEBPACK_IMPORTED_MODULE_2__symbols__["a" /* default */].contentChanged]) {
-          this[__WEBPACK_IMPORTED_MODULE_2__symbols__["a" /* default */].contentChanged]();
-        }
-      }));
+    /**
+     * Set/unset the class with the indicated name.
+     *
+     * This method exists primarily to handle the case where an element wants to
+     * set a default property value that should be reflected as as class. An
+     * important limitation of custom element consturctors is that they cannot
+     * set attributes, including the `class` attribute. A call to
+     * `reflectClass` during the constructor will be deferred until the element
+     * is connected to the document.
+     *
+     * @param {string} className - The name of the class to set.
+     * @param {object} value - True to set the class, false to remove it.
+     */
+    reflectClass(className, value) {
+      return __WEBPACK_IMPORTED_MODULE_0__attributes__["c" /* toggleClass */](this, className, value);
     }
+
   }
 
-  return ChildrenContent;
+  return AttributeMarshalling;
+}
+
+
+// Return the custom attributes for the given class.
+function attributesForClass(classFn) {
+
+  // We treat the HTMLElement base class as if it has no attributes, since we
+  // don't want to receive attributeChangedCallback for it. We'd like to do
+  // a simple check if classFn === HTMLElement, but this fails in the polyfill
+  // under IE, so we compare prototypes instead.
+  if (classFn.prototype === HTMLElement.prototype) {
+    return [];
+  }
+
+  // Get attributes for parent class.
+  const baseClass = Object.getPrototypeOf(classFn.prototype).constructor;
+  // See if parent class defines observedAttributes manually.
+  let baseAttributes = baseClass.observedAttributes;
+  if (!baseAttributes) {
+    // Calculate parent class attributes ourselves.
+    baseAttributes = attributesForClass(baseClass);
+  }
+
+  // Get attributes for this class.
+  const propertyNames = Object.getOwnPropertyNames(classFn.prototype);
+  const setterNames = propertyNames.filter(propertyName =>
+    typeof Object.getOwnPropertyDescriptor(
+        classFn.prototype, propertyName).set === 'function');
+  const attributes = setterNames.map(setterName =>
+      propertyNameToAttribute(setterName));
+
+  // Merge.
+  const diff = attributes.filter(attribute =>
+      baseAttributes.indexOf(attribute) < 0);
+  return baseAttributes.concat(diff);
+}
+
+// Convert hyphenated foo-bar attribute name to camel case fooBar property name.
+function attributeToPropertyName(attributeName) {
+  let propertyName = attributeToPropertyNames[attributeName];
+  if (!propertyName) {
+    // Convert and memoize.
+    const hyphenRegEx = /-([a-z])/g;
+    propertyName = attributeName.replace(hyphenRegEx,
+        match => match[1].toUpperCase());
+    attributeToPropertyNames[attributeName] = propertyName;
+  }
+  return propertyName;
+}
+
+// Convert a camel case fooBar property name to a hyphenated foo-bar attribute.
+function propertyNameToAttribute(propertyName) {
+  let attribute = propertyNamesToAttributes[propertyName];
+  if (!attribute) {
+    // Convert and memoize.
+    const uppercaseRegEx = /([A-Z])/g;
+    attribute = propertyName.replace(uppercaseRegEx, '-$1').toLowerCase();
+  }
+  return attribute;
 }
 
 
 /***/ }),
-/* 88 */
+/* 89 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10371,9 +10376,7 @@ function ChildrenContentMixin(base) {
  */
 function ClickSelectionMixin(base) {
 
-  /**
-   * The class prototype added by the mixin.
-   */
+  // The class prototype added by the mixin.
   class ClickSelection extends base {
 
     constructor() {
@@ -10387,12 +10390,13 @@ function ClickSelectionMixin(base) {
 
         this[__WEBPACK_IMPORTED_MODULE_0__symbols__["a" /* default */].raiseChangeEvents] = true;
 
-        // If the item clicked on is a button, the event seems to be raised in
-        // phase 2 (AT_TARGET) — but the event target will be the component, not
-        // the item that was clicked on.
-        const target = event.target === this ?
-          event.path[0] : // Event target isn't the item, so get it from path.
-          event.target;
+        // In some situations, the event target will not be the child which was
+        // originally clicked on. E.g.,  If the item clicked on is a button, the
+        // event seems to be raised in phase 2 (AT_TARGET) — but the event
+        // target will be the component, not the item that was clicked on.
+        // Instead of using the event target, we get the first node in the
+        // event's composed path.
+        const target = event.composedPath()[0];
 
         // Find which item was clicked on and, if found, select it. For elements
         // which don't require a selection, a background click will determine
@@ -10425,31 +10429,44 @@ function ClickSelectionMixin(base) {
 /*
  * Return the list item that is, or contains, the indicated target element.
  * Return null if not found.
+ *
+ * This is sufficiently flexible to accommodate the possibility of the target
+ * being inside arbitrarily deep layers of shadow DOM containment.
  */
 function itemForTarget(listElement, target) {
+
   const items = listElement.items;
   const itemCount = items ? items.length : 0;
-  for (let i = 0; i < itemCount; i++) {
-    let item = items[i];
-    if (item === target || item.contains(target)) {
-      return item;
+
+  let current = target;
+  while (current !== listElement) {
+
+    for (let i = 0; i < itemCount; i++) {
+      let item = items[i];
+      if (item === current || item.contains(current)) {
+        return item;
+      }
+    }
+
+    current = current.parentNode;
+    if (current instanceof ShadowRoot) {
+      current = current.host;
     }
   }
+
   return null;
 }
 
 
 /***/ }),
-/* 89 */
+/* 90 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__content__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Symbol__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Symbol__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__symbols__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__toggleClass__ = __webpack_require__(101);
 /* harmony export (immutable) */ __webpack_exports__["a"] = ContentItemsMixin;
-
 
 
 
@@ -10461,14 +10478,15 @@ const itemInitializedSymbol = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_
 
 
 /**
- * Mixin which maps content semantics (elements) to list item semantics.
+ * Mixin which maps content semantics (nodes) to list item semantics.
  *
- * Items differ from element contents in several ways:
+ * Items differ from nodes contents in several ways:
  *
  * * They are often referenced via index.
  * * They may have a selection state.
  * * It's common to do work to initialize the appearance or state of a new
  *   item.
+ * * Text nodes are filtered out.
  * * Auxiliary invisible child elements are filtered out and not counted as
  *   items. Auxiliary elements include link, script, style, and template
  *   elements. This filtering ensures that those auxiliary elements can be
@@ -10476,19 +10494,18 @@ const itemInitializedSymbol = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_
  *
  * This mixin expects a component to provide a `content` property returning a
  * raw set of elements. You can provide that yourself, or use
- * [ChildrenContentMixin](ChildrenContentMixin.md).
+ * [DefaultSlotContentMixin](DefaultSlotContentMixin.md).
  *
- * [ChildrenContentMixin](ChildrenContentMixin.md), the
- * `contentChanged` method will be invoked for you when the element's children
- * care of notifying it of future changes, and turns on the optimization. With
- * change, turning on the optimization automatically.
- * method when the set of items changes, the mixin concludes that you'll take
- * property. To avoid having to do work each time that property is requested,
- * return that immediately on subsequent calls to the `items` property. If you
- * that on, the mixin saves a reference to the computed set of items, and will
  * The most commonly referenced property defined by this mixin is the `items`
+ * property. To avoid having to do work each time that property is requested,
  * this mixin supports an optimized mode. If you invoke the `contentChanged`
- * use this mixin in conjunction with
+ * method when the set of items changes, the mixin concludes that you'll take
+ * care of notifying it of future changes, and turns on the optimization. With
+ * that on, the mixin saves a reference to the computed set of items, and will
+ * return that immediately on subsequent calls to the `items` property. If you
+ * use this mixin in conjunction with `DefaultSlotContentMixin`, the
+ * `contentChanged` method will be invoked for you when the element's children
+ * change, turning on the optimization automatically.
  *
  * @module ContentItemsMixin
  * @param base {Class} the base class to extend
@@ -10496,9 +10513,7 @@ const itemInitializedSymbol = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_
  */
 function ContentItemsMixin(base) {
 
-  /**
-   * The class prototype added by the mixin.
-   */
+  // The class prototype added by the mixin.
   class ContentItems extends base {
 
     [__WEBPACK_IMPORTED_MODULE_2__symbols__["a" /* default */].contentChanged]() {
@@ -10514,21 +10529,6 @@ function ContentItemsMixin(base) {
     }
 
     /**
-     * The selection state for a single item has changed.
-     *
-     * Invoke this method to signal that the selected state of the indicated item
-     * has changed. By default, this applies a `selected` CSS class if the item
-     * is selected, and removed it if not selected.
-     *
-     * @param {HTMLElement} item - The item whose selection state has changed.
-     * @param {boolean} selected - True if the item is selected, false if not.
-     */
-    [__WEBPACK_IMPORTED_MODULE_2__symbols__["a" /* default */].itemSelected](item, selected) {
-      if (super[__WEBPACK_IMPORTED_MODULE_2__symbols__["a" /* default */].itemSelected]) { super[__WEBPACK_IMPORTED_MODULE_2__symbols__["a" /* default */].itemSelected](item, selected); }
-      __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__toggleClass__["a" /* default */])(item, 'selected', selected);
-    }
-
-    /**
      * The current set of items in the list. See the top-level documentation for
      * mixin for a description of how items differ from plain content.
      *
@@ -10537,7 +10537,7 @@ function ContentItemsMixin(base) {
     get items() {
       let items;
       if (this[itemsSymbol] == null) {
-        items = __WEBPACK_IMPORTED_MODULE_0__content__["a" /* filterAuxiliaryElements */](this[__WEBPACK_IMPORTED_MODULE_2__symbols__["a" /* default */].content]);
+        items = __WEBPACK_IMPORTED_MODULE_0__content__["a" /* substantiveElements */](this[__WEBPACK_IMPORTED_MODULE_2__symbols__["a" /* default */].content]);
         // Note: test for *equality* with null, since we use `undefined` to
         // indicate that we're not yet caching items.
         if (this[itemsSymbol] === null) {
@@ -10587,7 +10587,127 @@ function ContentItemsMixin(base) {
 
 
 /***/ }),
-/* 90 */
+/* 91 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__content__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Symbol__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__symbols__ = __webpack_require__(7);
+/* harmony export (immutable) */ __webpack_exports__["a"] = DefaultSlotContentMixin;
+
+
+
+
+
+// Symbols for private data members on an element.
+const slotchangeFiredSymbol = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__Symbol__["a" /* default */])('slotchangeFired');
+
+
+/**
+ * Mixin which defines a component's `symbols.content` property as the flattened
+ * set of nodes assigned to its default slot.
+ *
+ * This also provides notification of changes to a component's content. It
+ * will invoke a `symbols.contentChanged` method when the component is first
+ * instantiated, and whenever its distributed children change. This is intended
+ * to satisfy the Gold Standard checklist item for monitoring
+ * [Content Changes](https://github.com/webcomponents/gold-standard/wiki/Content-Changes).
+ *
+ * Example:
+ *
+ * ```
+ * let base = DefaultSlotContentMixin(HTMLElement);
+ * class CountingElement extends base {
+ *
+ *   constructor() {
+ *     super();
+ *     let root = this.attachShadow({ mode: 'open' });
+ *     root.innerHTML = `<slot></slot>`;
+ *     this[symbols.shadowCreated]();
+ *   }
+ *
+ *   [symbols.contentChanged]() {
+ *     if (super[symbols.contentChanged]) { super[symbols.contentChanged](); }
+ *     // Count the component's children, both initially and when changed.
+ *     this.count = this.distributedChildren.length;
+ *   }
+ *
+ * }
+ * ```
+ *
+ * To use this mixin, the component should define a default (unnamed) `slot`
+ * element in its shadow subtree.
+ *
+ * To receive `contentChanged` notification, this mixin expects a component to
+ * invoke a method called `symbols.shadowCreated` after the component's shadow
+ * root has been created and populated.
+ *
+ * @module DefaultSlotContentMixin
+ * @param base {Class} the base class to extend
+ * @returns {Class} the extended class
+ */
+function DefaultSlotContentMixin(base) {
+
+  // The class prototype added by the mixin.
+  class DefaultSlotContent extends base {
+
+    connectedCallback() {
+      if (super.connectedCallback) { super.connectedCallback(); }
+      // HACK for Blink, which doesn't correctly fire initial slotchange.
+      // See https://bugs.chromium.org/p/chromium/issues/detail?id=696659
+      setTimeout(() => {
+        // By this point, the slotchange event should have fired.
+        if (!this[slotchangeFiredSymbol]) {
+          // slotchange event didn't fire; we're in Blink. Force the invocation
+          // of contentChanged that would have happened on slotchange.
+          if (this[__WEBPACK_IMPORTED_MODULE_2__symbols__["a" /* default */].contentChanged]) {
+            this[__WEBPACK_IMPORTED_MODULE_2__symbols__["a" /* default */].contentChanged]();
+          }
+        }
+      });
+    }
+
+    /**
+     * The content of this component, defined to be the flattened set of
+     * nodes assigned to its default unnamed slot.
+     *
+     * @type {HTMLElement[]}
+     */
+    get [__WEBPACK_IMPORTED_MODULE_2__symbols__["a" /* default */].content]() {
+      const slot = defaultSlot(this);
+      return slot ?
+        slot.assignedNodes({ flatten: true }) :
+        [];
+    }
+
+    [__WEBPACK_IMPORTED_MODULE_2__symbols__["a" /* default */].shadowCreated]() {
+      if (super[__WEBPACK_IMPORTED_MODULE_2__symbols__["a" /* default */].shadowCreated]) { super[__WEBPACK_IMPORTED_MODULE_2__symbols__["a" /* default */].shadowCreated](); }
+      // Listen to changes on the default slot.
+      const slot = defaultSlot(this);
+      slot.addEventListener('slotchange', event => {
+        this[slotchangeFiredSymbol] = true;
+        if (this[__WEBPACK_IMPORTED_MODULE_2__symbols__["a" /* default */].contentChanged]) {
+          this[__WEBPACK_IMPORTED_MODULE_2__symbols__["a" /* default */].contentChanged]();
+        }
+      });
+    }
+  }
+
+  return DefaultSlotContent;
+}
+
+
+function defaultSlot(element) {
+  const defaultSlot = element.shadowRoot && element.shadowRoot.querySelector('slot:not([name])');
+  if (element.shadowRoot && !defaultSlot) {
+    console.warn(`DefaultSlotContentMixin expects a component to define a shadow tree that includes a default (unnamed) slot.`);
+  }
+  return defaultSlot;
+}
+
+/***/ }),
+/* 92 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10611,9 +10731,7 @@ function ContentItemsMixin(base) {
  */
 function DirectionSelectionMixin(base) {
 
-  /**
-   * The class prototype added by the mixin.
-   */
+  // The class prototype added by the mixin.
   class DirectionSelection extends base {
 
     [__WEBPACK_IMPORTED_MODULE_0__symbols__["a" /* default */].goDown]() {
@@ -10677,7 +10795,7 @@ function DirectionSelectionMixin(base) {
 
 
 /***/ }),
-/* 91 */
+/* 93 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10708,9 +10826,7 @@ function DirectionSelectionMixin(base) {
  */
 function KeyboardDirectionMixin(base) {
 
-  /**
-   * The class prototype added by the mixin.
-   */
+  // The class prototype added by the mixin.
   class KeyboardDirection extends base {
 
     /**
@@ -10809,7 +10925,7 @@ function KeyboardDirectionMixin(base) {
 
 
 /***/ }),
-/* 92 */
+/* 94 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10861,9 +10977,7 @@ function KeyboardDirectionMixin(base) {
  */
 function KeyboardMixin(base) {
 
-  /**
-   * The class prototype added by the mixin.
-   */
+  // The class prototype added by the mixin.
   class Keyboard extends base {
 
     constructor() {
@@ -10913,7 +11027,7 @@ function KeyboardMixin(base) {
 
 
 /***/ }),
-/* 93 */
+/* 95 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10956,9 +11070,7 @@ function KeyboardMixin(base) {
  */
 function KeyboardPagedSelectionMixin(base) {
 
-  /**
-   * The class prototype added by the mixin.
-   */
+  // The class prototype added by the mixin.
   class KeyboardPagedSelection extends base {
 
     [__WEBPACK_IMPORTED_MODULE_1__symbols__["a" /* default */].keydown](event) {
@@ -11103,12 +11215,12 @@ function scrollOnePage(element, downward) {
 
 
 /***/ }),
-/* 94 */
+/* 96 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__constants__ = __webpack_require__(99);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Symbol__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__constants__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Symbol__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__symbols__ = __webpack_require__(7);
 /* harmony export (immutable) */ __webpack_exports__["a"] = KeyboardPrefixSelectionMixin;
 
@@ -11165,9 +11277,7 @@ const settingSelectionSymbol = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1
  */
 function KeyboardPrefixSelectionMixin(base) {
 
-  /**
-   * The class prototype added by the mixin.
-   */
+  // The class prototype added by the mixin.
   class KeyboardPrefixSelection extends base {
 
     // Default implementation returns an item's `alt` attribute or its
@@ -11320,7 +11430,81 @@ function setPrefixTimeout(element) {
 
 
 /***/ }),
-/* 95 */
+/* 97 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__symbols__ = __webpack_require__(7);
+/* harmony export (immutable) */ __webpack_exports__["a"] = SelectedItemTextValueMixin;
+
+
+
+/**
+ * Mixin which defines a `value` property that reflects the text content of a
+ * selected item.
+ *
+ * This mixin exists for list-like components that want to provide a more
+ * convenient way to get/set the selected item using text.
+ *
+ * This mixin expects a component to provide an `items` array of all elements
+ * in the list. A standard way to do that with is
+ * [ContentItemsMixin](ContentItemsMixin.md). This also expects the definition
+ * of `selectedIndex` and `selectedItem` properties, which can be obtained
+ * from [SingleSelectionMixin](SingleSelectionMixin.md).
+ *
+ * @module SelectedItemTextValueMixin
+ * @param base {Class} the base class to extend
+ * @returns {Class} the extended class
+ */
+function SelectedItemTextValueMixin(base) {
+
+  // The class prototype added by the mixin.
+  class SelectedItemTextValue extends base {
+
+    /**
+     * The text content of the selected item.
+     *
+     * Setting this value to a string will attempt to select the first list item
+     * whose text content match that string. Setting this to a string not matching
+     * any list item will result in no selection.
+     *
+     * @type {string}
+     */
+    get value() {
+      return this.selectedItem == null || this.selectedItem.textContent == null ?
+        '' :
+        this.selectedItem.textContent;
+    }
+    set value(text) {
+
+      const currentIndex = this.selectedIndex;
+      let newIndex = -1; // Assume we won't find the text.
+
+      // Find the item with the indicated text.
+      const items = this.items;
+      for (let i = 0, length = items.length; i < length; i++) {
+        if (items[i].textContent === text) {
+          newIndex = i;
+          break;
+        }
+      }
+
+      if (newIndex !== currentIndex) {
+        this.selectedIndex = newIndex;
+        if (this[__WEBPACK_IMPORTED_MODULE_0__symbols__["a" /* default */].raiseChangeEvents]) {
+          const event = new CustomEvent('value-changed');
+          this.dispatchEvent(event);
+        }
+      }
+    }
+  }
+
+  return SelectedItemTextValue;
+}
+
+
+/***/ }),
+/* 98 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11367,11 +11551,9 @@ let idCount = 0;
  * @param base {Class} the base class to extend
  * @returns {Class} the extended class
  */
-/* harmony default export */ __webpack_exports__["a"] = function (base) {
+/* harmony default export */ __webpack_exports__["a"] = (function (base) {
 
-  /**
-   * The class prototype added by the mixin.
-   */
+  // The class prototype added by the mixin.
   class SelectionAria extends base {
 
     connectedCallback() {
@@ -11439,11 +11621,11 @@ let idCount = 0;
   }
 
   return SelectionAria;
-};
+});
 
 
 /***/ }),
-/* 96 */
+/* 99 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11468,11 +11650,9 @@ let idCount = 0;
  * @param base {Class} the base class to extend
  * @returns {Class} the extended class
  */
-/* harmony default export */ __webpack_exports__["a"] = (base) => {
+/* harmony default export */ __webpack_exports__["a"] = ((base) => {
 
-  /**
-   * The class prototype added by the mixin.
-   */
+  // The class prototype added by the mixin.
   class SelectionInView extends base {
 
     connectedCallback() {
@@ -11545,15 +11725,15 @@ let idCount = 0;
   }
 
   return SelectionInView;
-};
+});
 
 
 /***/ }),
-/* 97 */
+/* 100 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__src_symbols__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__symbols__ = __webpack_require__(7);
 /* harmony export (immutable) */ __webpack_exports__["a"] = ShadowTemplateMixin;
 
 
@@ -11596,9 +11776,7 @@ const mapTagToTemplate = {};
  */
 function ShadowTemplateMixin(base) {
 
-  /**
-   * The class prototype added by the mixin.
-   */
+  // The class prototype added by the mixin.
   class ShadowTemplate extends base {
 
     /*
@@ -11616,7 +11794,7 @@ function ShadowTemplateMixin(base) {
         // This is the first time we've created an instance of this tag.
 
         // Get the template and perform initial processing.
-        template = this[__WEBPACK_IMPORTED_MODULE_0__src_symbols__["a" /* default */].template];
+        template = this[__WEBPACK_IMPORTED_MODULE_0__symbols__["a" /* default */].template];
         if (!template) {
           console.warn(`ShadowTemplateMixin expects a component to define a property called [symbols.template].`);
           return;
@@ -11629,7 +11807,7 @@ function ShadowTemplateMixin(base) {
           template.innerHTML = templateText;
         }
 
-        if (window.ShadyCSS) {
+        if (window.ShadyCSS && !window.ShadyCSS.nativeShadow) {
           // Let the CSS polyfill do its own initialization.
           window.ShadyCSS.prepareTemplate(template, tag);
         }
@@ -11644,15 +11822,15 @@ function ShadowTemplateMixin(base) {
       root.appendChild(clone);
 
       /* Let the component know the shadow tree has been populated. */
-      if (this[__WEBPACK_IMPORTED_MODULE_0__src_symbols__["a" /* default */].shadowCreated]) {
-        this[__WEBPACK_IMPORTED_MODULE_0__src_symbols__["a" /* default */].shadowCreated]();
+      if (this[__WEBPACK_IMPORTED_MODULE_0__symbols__["a" /* default */].shadowCreated]) {
+        this[__WEBPACK_IMPORTED_MODULE_0__symbols__["a" /* default */].shadowCreated]();
       }
     }
 
     connectedCallback() {
       if (super.connectedCallback) { super.connectedCallback(); }
-      if (window.ShadyCSS) {
-        window.ShadyCSS.applyStyle(this);
+      if (window.ShadyCSS && !window.ShadyCSS.nativeShadow) {
+        window.ShadyCSS.styleElement(this);
       }
     }
 
@@ -11663,11 +11841,11 @@ function ShadowTemplateMixin(base) {
 
 
 /***/ }),
-/* 98 */
+/* 101 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Symbol__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Symbol__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__symbols__ = __webpack_require__(7);
 /* harmony export (immutable) */ __webpack_exports__["a"] = SingleSelectionMixin;
 
@@ -11723,9 +11901,7 @@ const internalSelectedItemSymbol = __webpack_require__.i(__WEBPACK_IMPORTED_MODU
  */
 function SingleSelectionMixin(base) {
 
-  /**
-   * The class prototype added by the mixin.
-   */
+  // The class prototype added by the mixin.
   class SingleSelection extends base {
 
     constructor() {
@@ -12181,7 +12357,152 @@ function updatePossibleNavigations(element) {
 
 
 /***/ }),
-/* 99 */
+/* 102 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Symbol__ = __webpack_require__(18);
+/* harmony export (immutable) */ __webpack_exports__["b"] = setAttribute;
+/* harmony export (immutable) */ __webpack_exports__["c"] = toggleClass;
+/* harmony export (immutable) */ __webpack_exports__["a"] = writePendingAttributes;
+/**
+ * Helpers for accessing a component's attributes.
+ *
+ * @module attributes
+ */
+
+
+
+
+
+// Symbols for private data members on an element.
+const safeToSetAttributesSymbol = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__Symbol__["a" /* default */])('safeToSetAttributes');
+const pendingAttributesSymbol = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__Symbol__["a" /* default */])('pendingAttributes');
+const pendingClassesSymbol = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__Symbol__["a" /* default */])('pendingClasses');
+
+
+/**
+ * Set/unset the attribute with the indicated name.
+ *
+ * This method exists primarily to handle the case where an element wants to
+ * set a default property value that should be reflected as an attribute. An
+ * important limitation of custom element consturctors is that they cannot
+ * set attributes. A call to `setAttribute` during the constructor will
+ * be deferred until the element is connected to the document.
+ *
+ * @param {string} attribute - The name of the *attribute* (not property) to set.
+ * @param {object} value - The value to set. If null, the attribute will be removed.
+ */
+function setAttribute(element, attribute, value) {
+  if (element[safeToSetAttributesSymbol]) {
+    // Safe to set attributes immediately.
+    setAttributeToElement(element, attribute, value);
+  } else {
+    // Defer setting attributes until the first time we're connected.
+    if (!element[pendingAttributesSymbol]) {
+      element[pendingAttributesSymbol] = {};
+    }
+    element[pendingAttributesSymbol][attribute] = value;
+  }
+}
+
+/**
+ * Set/unset the class with the indicated name.
+ *
+ * This method exists primarily to handle the case where an element wants to
+ * set a default property value that should be reflected as as class. An
+ * important limitation of custom element consturctors is that they cannot
+ * set attributes, including the `class` attribute. A call to
+ * `toggleClass` during the constructor will be deferred until the element
+ * is connected to the document.
+ *
+ * @param {string} className - The name of the class to set.
+ * @param {boolean} [value] - True to set the class, false to remove it. If
+ * omitted, the class will be toggled.
+ */
+function toggleClass(element, className, value) {
+  if (element[safeToSetAttributesSymbol]) {
+    // Safe to set class immediately.
+    // Since IE 11's native `toggleClass` implementation is deficient, we
+    // set or unset the class by hand.
+    const classList = element.classList;
+    const addClass = typeof value === 'undefined' ?
+      !classList.contains(className) :
+      value;
+    if (addClass) {
+      classList.add(className);
+    } else {
+      classList.remove(className);
+    }
+    return addClass;
+  } else {
+    // Defer setting class until the first time we're connected.
+    if (!element[pendingClassesSymbol]) {
+      element[pendingClassesSymbol] = {};
+    }
+    element[pendingClassesSymbol][className] = value;
+  }
+}
+
+/**
+ * Perform any pending updates to attributes and classes.
+ *
+ * This writes any `setAttribute` or `toggleClass` values that were performed
+ * before an element was attached to the document for the first time.
+ *
+ * This method should be called by mixins/components in their
+ * `connectedCallback`. If mulitple mixins/components invoke this during the
+ * same `connectedCallback`, only the first call will have any effect. The
+ * subsequent calls will be harmless.
+ *
+ * @param {HTMLElement} element - The element being added to the document.
+ */
+function writePendingAttributes(element) {
+  element[safeToSetAttributesSymbol] = true;
+
+  // Set any pending attributes.
+  const pendingAttributes = element[pendingAttributesSymbol];
+  if (pendingAttributes) {
+    for (let attribute in pendingAttributes) {
+      const value = pendingAttributes[attribute];
+      setAttributeToElement(element, attribute, value);
+    }
+    element[pendingAttributesSymbol] = null;
+  }
+
+  // Set any pending classes.
+  const pendingClasses = element[pendingClassesSymbol];
+  if (pendingClasses) {
+    for (let className in pendingClasses) {
+      const value = pendingClasses[className];
+      toggleClass(element, className, value);
+    }
+    element[pendingClassesSymbol] = null;
+  }
+}
+
+
+//
+// Helpers
+//
+
+// Reflect the attribute to the given element.
+// If the value is null, remove the attribute.
+function setAttributeToElement(element, attributeName, value) {
+  if (value === null || typeof value === 'undefined') {
+    element.removeAttribute(attributeName);
+  } else {
+    const text = String(value);
+    // Avoid recursive attributeChangedCallback calls.
+    if (element.getAttribute(attributeName) !== text) {
+      element.setAttribute(attributeName, value);
+    }
+  }
+}
+
+
+/***/ }),
+/* 103 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12204,118 +12525,11 @@ const constants = {
 };
 
 
-/* harmony default export */ __webpack_exports__["a"] = constants;
+/* harmony default export */ __webpack_exports__["a"] = (constants);
 
 
 /***/ }),
-/* 100 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = microtask;
-/*
- * Microtask helper for IE 11.
- *
- * Executing a function as a microtask is trivial in browsers that support
- * promises, whose then() clauses use microtask timing. IE 11 doesn't support
- * promises, but does support MutationObservers, which are also executed as
- * microtasks. So this helper uses an MutationObserver to achieve microtask
- * timing.
- *
- * See https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/
- *
- * Inspired by Polymer's async() function.
- */
-
-
-// The queue of pending callbacks to be executed as microtasks.
-const callbacks = [];
-
-// Create an element that we will modify to force observable mutations.
-const element = document.createTextNode('');
-
-// A monotonically-increasing value.
-let counter = 0;
-
-
-/**
- * Add a callback to the microtask queue.
- *
- * This uses a MutationObserver so that it works on IE 11.
- *
- * NOTE: IE 11 may actually use timeout timing with MutationObservers. This
- * needs more investigation.
- *
- * @function microtask
- * @param {function} callback
- */
-function microtask(callback) {
-  callbacks.push(callback);
-  // Force a mutation.
-  element.textContent = ++counter;
-}
-
-
-// Execute any pending callbacks.
-function executeCallbacks() {
-  while (callbacks.length > 0) {
-    const callback = callbacks.shift();
-    callback();
-  }
-}
-
-
-// Create the observer.
-const observer = new MutationObserver(executeCallbacks);
-observer.observe(element, {
-  characterData: true
-});
-
-
-/***/ }),
-/* 101 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = toggleClass;
-/**
- * Helper function for standard classList.toggle() behavior on old browsers,
- * namely IE 11.
- *
- * The standard
- * [classlist](https://developer.mozilla.org/en-US/docs/Web/API/Element/classList)
- * object has a `toggle()` function that supports a second Boolean parameter
- * that can be used to succinctly turn a class on or off. This feature is often
- * useful in designing custom elements, which may want to externally reflect
- * component state in a CSS class that can be used for styling purposes.
- *
- * Unfortunately, IE 11 does not support the Boolean parameter to
- * `classList.toggle()`. This helper function behaves like the standard
- * `toggle()`, including support for the Boolean parameter, so that it can be
- * used even on IE 11.
- *
- * @function toggleClass
- * @param {HTMLElement} element - The element to modify
- * @param {string} className - The class to add/remove
- * @param {boolean} [force] - Force the class to be added (if true) or removed
- *                            (if false)
- */
-function toggleClass(element, className, force) {
-  const classList = element.classList;
-  const addClass = (typeof force === 'undefined') ?
-    !classList.contains(className) :
-    force;
-  if (addClass) {
-    classList.add(className);
-  } else {
-    classList.remove(className);
-  }
-  return addClass;
-}
-
-
-/***/ }),
-/* 102 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12352,7 +12566,7 @@ function camelize(string) {
 module.exports = camelize;
 
 /***/ }),
-/* 103 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12369,7 +12583,7 @@ module.exports = camelize;
 
 
 
-var camelize = __webpack_require__(102);
+var camelize = __webpack_require__(104);
 
 var msPattern = /^-ms-/;
 
@@ -12397,7 +12611,7 @@ function camelizeStyleName(string) {
 module.exports = camelizeStyleName;
 
 /***/ }),
-/* 104 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12414,7 +12628,7 @@ module.exports = camelizeStyleName;
  * 
  */
 
-var isTextNode = __webpack_require__(112);
+var isTextNode = __webpack_require__(114);
 
 /*eslint-disable no-bitwise */
 
@@ -12442,7 +12656,7 @@ function containsNode(outerNode, innerNode) {
 module.exports = containsNode;
 
 /***/ }),
-/* 105 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12575,7 +12789,7 @@ module.exports = createArrayFromMixed;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 106 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12596,8 +12810,8 @@ module.exports = createArrayFromMixed;
 
 var ExecutionEnvironment = __webpack_require__(6);
 
-var createArrayFromMixed = __webpack_require__(105);
-var getMarkupWrap = __webpack_require__(107);
+var createArrayFromMixed = __webpack_require__(107);
+var getMarkupWrap = __webpack_require__(109);
 var invariant = __webpack_require__(1);
 
 /**
@@ -12665,7 +12879,7 @@ module.exports = createNodesFromMarkup;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 107 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12766,7 +12980,7 @@ module.exports = getMarkupWrap;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 108 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12795,10 +13009,10 @@ module.exports = getMarkupWrap;
  */
 
 function getUnboundedScrollPosition(scrollable) {
-  if (scrollable === window) {
+  if (scrollable.Window && scrollable instanceof scrollable.Window) {
     return {
-      x: window.pageXOffset || document.documentElement.scrollLeft,
-      y: window.pageYOffset || document.documentElement.scrollTop
+      x: scrollable.pageXOffset || scrollable.document.documentElement.scrollLeft,
+      y: scrollable.pageYOffset || scrollable.document.documentElement.scrollTop
     };
   }
   return {
@@ -12810,7 +13024,7 @@ function getUnboundedScrollPosition(scrollable) {
 module.exports = getUnboundedScrollPosition;
 
 /***/ }),
-/* 109 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12848,7 +13062,7 @@ function hyphenate(string) {
 module.exports = hyphenate;
 
 /***/ }),
-/* 110 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12865,7 +13079,7 @@ module.exports = hyphenate;
 
 
 
-var hyphenate = __webpack_require__(109);
+var hyphenate = __webpack_require__(111);
 
 var msPattern = /^ms-/;
 
@@ -12892,7 +13106,7 @@ function hyphenateStyleName(string) {
 module.exports = hyphenateStyleName;
 
 /***/ }),
-/* 111 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12914,13 +13128,15 @@ module.exports = hyphenateStyleName;
  * @return {boolean} Whether or not the object is a DOM node.
  */
 function isNode(object) {
-  return !!(object && (typeof Node === 'function' ? object instanceof Node : typeof object === 'object' && typeof object.nodeType === 'number' && typeof object.nodeName === 'string'));
+  var doc = object ? object.ownerDocument || object : document;
+  var defaultView = doc.defaultView || window;
+  return !!(object && (typeof defaultView.Node === 'function' ? object instanceof defaultView.Node : typeof object === 'object' && typeof object.nodeType === 'number' && typeof object.nodeName === 'string'));
 }
 
 module.exports = isNode;
 
 /***/ }),
-/* 112 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12937,7 +13153,7 @@ module.exports = isNode;
  * @typechecks
  */
 
-var isNode = __webpack_require__(111);
+var isNode = __webpack_require__(113);
 
 /**
  * @param {*} object The object to check.
@@ -12950,7 +13166,7 @@ function isTextNode(object) {
 module.exports = isTextNode;
 
 /***/ }),
-/* 113 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12985,7 +13201,7 @@ function memoizeStringOnly(callback) {
 module.exports = memoizeStringOnly;
 
 /***/ }),
-/* 114 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13013,7 +13229,7 @@ if (ExecutionEnvironment.canUseDOM) {
 module.exports = performance || {};
 
 /***/ }),
-/* 115 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13030,7 +13246,7 @@ module.exports = performance || {};
  * @typechecks
  */
 
-var performance = __webpack_require__(114);
+var performance = __webpack_require__(116);
 
 var performanceNow;
 
@@ -13052,7 +13268,7 @@ if (performance.now) {
 module.exports = performanceNow;
 
 /***/ }),
-/* 116 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13131,7 +13347,7 @@ var ARIADOMPropertyConfig = {
 module.exports = ARIADOMPropertyConfig;
 
 /***/ }),
-/* 117 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13160,7 +13376,7 @@ var AutoFocusUtils = {
 module.exports = AutoFocusUtils;
 
 /***/ }),
-/* 118 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13176,11 +13392,11 @@ module.exports = AutoFocusUtils;
 
 
 
-var EventPropagators = __webpack_require__(23);
+var EventPropagators = __webpack_require__(24);
 var ExecutionEnvironment = __webpack_require__(6);
-var FallbackCompositionState = __webpack_require__(124);
-var SyntheticCompositionEvent = __webpack_require__(167);
-var SyntheticInputEvent = __webpack_require__(170);
+var FallbackCompositionState = __webpack_require__(126);
+var SyntheticCompositionEvent = __webpack_require__(169);
+var SyntheticInputEvent = __webpack_require__(172);
 
 var END_KEYCODES = [9, 13, 27, 32]; // Tab, Return, Esc, Space
 var START_KEYCODE = 229;
@@ -13550,7 +13766,7 @@ var BeforeInputEventPlugin = {
 module.exports = BeforeInputEventPlugin;
 
 /***/ }),
-/* 119 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13570,10 +13786,10 @@ var CSSProperty = __webpack_require__(59);
 var ExecutionEnvironment = __webpack_require__(6);
 var ReactInstrumentation = __webpack_require__(9);
 
-var camelizeStyleName = __webpack_require__(103);
-var dangerousStyleValue = __webpack_require__(177);
-var hyphenateStyleName = __webpack_require__(110);
-var memoizeStringOnly = __webpack_require__(113);
+var camelizeStyleName = __webpack_require__(105);
+var dangerousStyleValue = __webpack_require__(179);
+var hyphenateStyleName = __webpack_require__(112);
+var memoizeStringOnly = __webpack_require__(115);
 var warning = __webpack_require__(2);
 
 var processStyleName = memoizeStringOnly(function (styleName) {
@@ -13765,7 +13981,7 @@ module.exports = CSSPropertyOperations;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 120 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13781,8 +13997,8 @@ module.exports = CSSPropertyOperations;
 
 
 
-var EventPluginHub = __webpack_require__(22);
-var EventPropagators = __webpack_require__(23);
+var EventPluginHub = __webpack_require__(23);
+var EventPropagators = __webpack_require__(24);
 var ExecutionEnvironment = __webpack_require__(6);
 var ReactDOMComponentTree = __webpack_require__(5);
 var ReactUpdates = __webpack_require__(11);
@@ -14091,7 +14307,7 @@ var ChangeEventPlugin = {
 module.exports = ChangeEventPlugin;
 
 /***/ }),
-/* 121 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14109,10 +14325,10 @@ module.exports = ChangeEventPlugin;
 
 var _prodInvariant = __webpack_require__(3);
 
-var DOMLazyTree = __webpack_require__(18);
+var DOMLazyTree = __webpack_require__(19);
 var ExecutionEnvironment = __webpack_require__(6);
 
-var createNodesFromMarkup = __webpack_require__(106);
+var createNodesFromMarkup = __webpack_require__(108);
 var emptyFunction = __webpack_require__(10);
 var invariant = __webpack_require__(1);
 
@@ -14145,7 +14361,7 @@ module.exports = Danger;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 122 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14176,7 +14392,7 @@ var DefaultEventPluginOrder = ['ResponderEventPlugin', 'SimpleEventPlugin', 'Tap
 module.exports = DefaultEventPluginOrder;
 
 /***/ }),
-/* 123 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14192,7 +14408,7 @@ module.exports = DefaultEventPluginOrder;
 
 
 
-var EventPropagators = __webpack_require__(23);
+var EventPropagators = __webpack_require__(24);
 var ReactDOMComponentTree = __webpack_require__(5);
 var SyntheticMouseEvent = __webpack_require__(29);
 
@@ -14281,7 +14497,7 @@ var EnterLeaveEventPlugin = {
 module.exports = EnterLeaveEventPlugin;
 
 /***/ }),
-/* 124 */
+/* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14381,7 +14597,7 @@ PooledClass.addPoolingTo(FallbackCompositionState);
 module.exports = FallbackCompositionState;
 
 /***/ }),
-/* 125 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14598,7 +14814,7 @@ var HTMLDOMPropertyConfig = {
 module.exports = HTMLDOMPropertyConfig;
 
 /***/ }),
-/* 126 */
+/* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14614,7 +14830,7 @@ module.exports = HTMLDOMPropertyConfig;
 
 
 
-var ReactReconciler = __webpack_require__(19);
+var ReactReconciler = __webpack_require__(20);
 
 var instantiateReactComponent = __webpack_require__(76);
 var KeyEscapeUtils = __webpack_require__(37);
@@ -14758,7 +14974,7 @@ module.exports = ReactChildReconciler;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 127 */
+/* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14775,7 +14991,7 @@ module.exports = ReactChildReconciler;
 
 
 var DOMChildrenOperations = __webpack_require__(34);
-var ReactDOMIDOperations = __webpack_require__(134);
+var ReactDOMIDOperations = __webpack_require__(136);
 
 /**
  * Abstracts away all functionality of the reconciler that requires knowledge of
@@ -14793,7 +15009,7 @@ var ReactComponentBrowserEnvironment = {
 module.exports = ReactComponentBrowserEnvironment;
 
 /***/ }),
-/* 128 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14812,20 +15028,20 @@ module.exports = ReactComponentBrowserEnvironment;
 var _prodInvariant = __webpack_require__(3),
     _assign = __webpack_require__(4);
 
-var React = __webpack_require__(20);
+var React = __webpack_require__(21);
 var ReactComponentEnvironment = __webpack_require__(39);
 var ReactCurrentOwner = __webpack_require__(12);
 var ReactErrorUtils = __webpack_require__(40);
-var ReactInstanceMap = __webpack_require__(24);
+var ReactInstanceMap = __webpack_require__(25);
 var ReactInstrumentation = __webpack_require__(9);
 var ReactNodeTypes = __webpack_require__(69);
-var ReactReconciler = __webpack_require__(19);
+var ReactReconciler = __webpack_require__(20);
 
 if (process.env.NODE_ENV !== 'production') {
-  var checkReactTypeSpec = __webpack_require__(176);
+  var checkReactTypeSpec = __webpack_require__(178);
 }
 
-var emptyObject = __webpack_require__(21);
+var emptyObject = __webpack_require__(22);
 var invariant = __webpack_require__(1);
 var shallowEqual = __webpack_require__(33);
 var shouldUpdateReactComponent = __webpack_require__(47);
@@ -15701,7 +15917,7 @@ module.exports = ReactCompositeComponent;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 129 */
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15720,15 +15936,15 @@ module.exports = ReactCompositeComponent;
 
 
 var ReactDOMComponentTree = __webpack_require__(5);
-var ReactDefaultInjection = __webpack_require__(146);
+var ReactDefaultInjection = __webpack_require__(148);
 var ReactMount = __webpack_require__(68);
-var ReactReconciler = __webpack_require__(19);
+var ReactReconciler = __webpack_require__(20);
 var ReactUpdates = __webpack_require__(11);
-var ReactVersion = __webpack_require__(161);
+var ReactVersion = __webpack_require__(163);
 
-var findDOMNode = __webpack_require__(178);
+var findDOMNode = __webpack_require__(180);
 var getHostComponentFromComposite = __webpack_require__(74);
-var renderSubtreeIntoContainer = __webpack_require__(186);
+var renderSubtreeIntoContainer = __webpack_require__(188);
 var warning = __webpack_require__(2);
 
 ReactDefaultInjection.inject();
@@ -15805,9 +16021,9 @@ if (process.env.NODE_ENV !== 'production') {
 
 if (process.env.NODE_ENV !== 'production') {
   var ReactInstrumentation = __webpack_require__(9);
-  var ReactDOMUnknownPropertyHook = __webpack_require__(143);
-  var ReactDOMNullInputValuePropHook = __webpack_require__(137);
-  var ReactDOMInvalidARIAHook = __webpack_require__(136);
+  var ReactDOMUnknownPropertyHook = __webpack_require__(145);
+  var ReactDOMNullInputValuePropHook = __webpack_require__(139);
+  var ReactDOMInvalidARIAHook = __webpack_require__(138);
 
   ReactInstrumentation.debugTool.addHook(ReactDOMUnknownPropertyHook);
   ReactInstrumentation.debugTool.addHook(ReactDOMNullInputValuePropHook);
@@ -15818,7 +16034,7 @@ module.exports = ReactDOM;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 130 */
+/* 132 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15839,24 +16055,24 @@ module.exports = ReactDOM;
 var _prodInvariant = __webpack_require__(3),
     _assign = __webpack_require__(4);
 
-var AutoFocusUtils = __webpack_require__(117);
-var CSSPropertyOperations = __webpack_require__(119);
-var DOMLazyTree = __webpack_require__(18);
+var AutoFocusUtils = __webpack_require__(119);
+var CSSPropertyOperations = __webpack_require__(121);
+var DOMLazyTree = __webpack_require__(19);
 var DOMNamespaces = __webpack_require__(35);
 var DOMProperty = __webpack_require__(14);
 var DOMPropertyOperations = __webpack_require__(61);
-var EventPluginHub = __webpack_require__(22);
+var EventPluginHub = __webpack_require__(23);
 var EventPluginRegistry = __webpack_require__(27);
 var ReactBrowserEventEmitter = __webpack_require__(28);
 var ReactDOMComponentFlags = __webpack_require__(62);
 var ReactDOMComponentTree = __webpack_require__(5);
-var ReactDOMInput = __webpack_require__(135);
-var ReactDOMOption = __webpack_require__(138);
+var ReactDOMInput = __webpack_require__(137);
+var ReactDOMOption = __webpack_require__(140);
 var ReactDOMSelect = __webpack_require__(63);
-var ReactDOMTextarea = __webpack_require__(141);
+var ReactDOMTextarea = __webpack_require__(143);
 var ReactInstrumentation = __webpack_require__(9);
-var ReactMultiChild = __webpack_require__(154);
-var ReactServerRenderingTransaction = __webpack_require__(159);
+var ReactMultiChild = __webpack_require__(156);
+var ReactServerRenderingTransaction = __webpack_require__(161);
 
 var emptyFunction = __webpack_require__(10);
 var escapeTextContentForBrowser = __webpack_require__(31);
@@ -16825,7 +17041,7 @@ module.exports = ReactDOMComponent;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 131 */
+/* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16864,7 +17080,7 @@ module.exports = ReactDOMContainerInfo;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 132 */
+/* 134 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16882,7 +17098,7 @@ module.exports = ReactDOMContainerInfo;
 
 var _assign = __webpack_require__(4);
 
-var DOMLazyTree = __webpack_require__(18);
+var DOMLazyTree = __webpack_require__(19);
 var ReactDOMComponentTree = __webpack_require__(5);
 
 var ReactDOMEmptyComponent = function (instantiate) {
@@ -16929,7 +17145,7 @@ _assign(ReactDOMEmptyComponent.prototype, {
 module.exports = ReactDOMEmptyComponent;
 
 /***/ }),
-/* 133 */
+/* 135 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16953,7 +17169,7 @@ var ReactDOMFeatureFlags = {
 module.exports = ReactDOMFeatureFlags;
 
 /***/ }),
-/* 134 */
+/* 136 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16992,7 +17208,7 @@ var ReactDOMIDOperations = {
 module.exports = ReactDOMIDOperations;
 
 /***/ }),
-/* 135 */
+/* 137 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17276,7 +17492,7 @@ module.exports = ReactDOMInput;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 136 */
+/* 138 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17375,7 +17591,7 @@ module.exports = ReactDOMInvalidARIAHook;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 137 */
+/* 139 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17424,7 +17640,7 @@ module.exports = ReactDOMNullInputValuePropHook;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 138 */
+/* 140 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17442,7 +17658,7 @@ module.exports = ReactDOMNullInputValuePropHook;
 
 var _assign = __webpack_require__(4);
 
-var React = __webpack_require__(20);
+var React = __webpack_require__(21);
 var ReactDOMComponentTree = __webpack_require__(5);
 var ReactDOMSelect = __webpack_require__(63);
 
@@ -17553,7 +17769,7 @@ module.exports = ReactDOMOption;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 139 */
+/* 141 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17571,7 +17787,7 @@ module.exports = ReactDOMOption;
 
 var ExecutionEnvironment = __webpack_require__(6);
 
-var getNodeForCharacterOffset = __webpack_require__(183);
+var getNodeForCharacterOffset = __webpack_require__(185);
 var getTextContentAccessor = __webpack_require__(75);
 
 /**
@@ -17770,7 +17986,7 @@ var ReactDOMSelection = {
 module.exports = ReactDOMSelection;
 
 /***/ }),
-/* 140 */
+/* 142 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17790,7 +18006,7 @@ var _prodInvariant = __webpack_require__(3),
     _assign = __webpack_require__(4);
 
 var DOMChildrenOperations = __webpack_require__(34);
-var DOMLazyTree = __webpack_require__(18);
+var DOMLazyTree = __webpack_require__(19);
 var ReactDOMComponentTree = __webpack_require__(5);
 
 var escapeTextContentForBrowser = __webpack_require__(31);
@@ -17940,7 +18156,7 @@ module.exports = ReactDOMTextComponent;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 141 */
+/* 143 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18106,7 +18322,7 @@ module.exports = ReactDOMTextarea;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 142 */
+/* 144 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18248,7 +18464,7 @@ module.exports = {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 143 */
+/* 145 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18366,7 +18582,7 @@ module.exports = ReactDOMUnknownPropertyHook;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 144 */
+/* 146 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18383,12 +18599,12 @@ module.exports = ReactDOMUnknownPropertyHook;
 
 
 
-var ReactInvalidSetStateWarningHook = __webpack_require__(152);
-var ReactHostOperationHistoryHook = __webpack_require__(150);
+var ReactInvalidSetStateWarningHook = __webpack_require__(154);
+var ReactHostOperationHistoryHook = __webpack_require__(152);
 var ReactComponentTreeHook = __webpack_require__(8);
 var ExecutionEnvironment = __webpack_require__(6);
 
-var performanceNow = __webpack_require__(115);
+var performanceNow = __webpack_require__(117);
 var warning = __webpack_require__(2);
 
 var hooks = [];
@@ -18733,7 +18949,7 @@ module.exports = ReactDebugTool;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 145 */
+/* 147 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18806,7 +19022,7 @@ var ReactDefaultBatchingStrategy = {
 module.exports = ReactDefaultBatchingStrategy;
 
 /***/ }),
-/* 146 */
+/* 148 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18822,25 +19038,25 @@ module.exports = ReactDefaultBatchingStrategy;
 
 
 
-var ARIADOMPropertyConfig = __webpack_require__(116);
-var BeforeInputEventPlugin = __webpack_require__(118);
-var ChangeEventPlugin = __webpack_require__(120);
-var DefaultEventPluginOrder = __webpack_require__(122);
-var EnterLeaveEventPlugin = __webpack_require__(123);
-var HTMLDOMPropertyConfig = __webpack_require__(125);
-var ReactComponentBrowserEnvironment = __webpack_require__(127);
-var ReactDOMComponent = __webpack_require__(130);
+var ARIADOMPropertyConfig = __webpack_require__(118);
+var BeforeInputEventPlugin = __webpack_require__(120);
+var ChangeEventPlugin = __webpack_require__(122);
+var DefaultEventPluginOrder = __webpack_require__(124);
+var EnterLeaveEventPlugin = __webpack_require__(125);
+var HTMLDOMPropertyConfig = __webpack_require__(127);
+var ReactComponentBrowserEnvironment = __webpack_require__(129);
+var ReactDOMComponent = __webpack_require__(132);
 var ReactDOMComponentTree = __webpack_require__(5);
-var ReactDOMEmptyComponent = __webpack_require__(132);
-var ReactDOMTreeTraversal = __webpack_require__(142);
-var ReactDOMTextComponent = __webpack_require__(140);
-var ReactDefaultBatchingStrategy = __webpack_require__(145);
-var ReactEventListener = __webpack_require__(149);
-var ReactInjection = __webpack_require__(151);
-var ReactReconcileTransaction = __webpack_require__(157);
-var SVGDOMPropertyConfig = __webpack_require__(162);
-var SelectEventPlugin = __webpack_require__(163);
-var SimpleEventPlugin = __webpack_require__(164);
+var ReactDOMEmptyComponent = __webpack_require__(134);
+var ReactDOMTreeTraversal = __webpack_require__(144);
+var ReactDOMTextComponent = __webpack_require__(142);
+var ReactDefaultBatchingStrategy = __webpack_require__(147);
+var ReactEventListener = __webpack_require__(151);
+var ReactInjection = __webpack_require__(153);
+var ReactReconcileTransaction = __webpack_require__(159);
+var SVGDOMPropertyConfig = __webpack_require__(164);
+var SelectEventPlugin = __webpack_require__(165);
+var SimpleEventPlugin = __webpack_require__(166);
 
 var alreadyInjected = false;
 
@@ -18897,7 +19113,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 147 */
+/* 149 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18922,7 +19138,7 @@ var REACT_ELEMENT_TYPE = typeof Symbol === 'function' && Symbol['for'] && Symbol
 module.exports = REACT_ELEMENT_TYPE;
 
 /***/ }),
-/* 148 */
+/* 150 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18938,7 +19154,7 @@ module.exports = REACT_ELEMENT_TYPE;
 
 
 
-var EventPluginHub = __webpack_require__(22);
+var EventPluginHub = __webpack_require__(23);
 
 function runEventQueueInBatch(events) {
   EventPluginHub.enqueueEvents(events);
@@ -18960,7 +19176,7 @@ var ReactEventEmitterMixin = {
 module.exports = ReactEventEmitterMixin;
 
 /***/ }),
-/* 149 */
+/* 151 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18985,7 +19201,7 @@ var ReactDOMComponentTree = __webpack_require__(5);
 var ReactUpdates = __webpack_require__(11);
 
 var getEventTarget = __webpack_require__(45);
-var getUnboundedScrollPosition = __webpack_require__(108);
+var getUnboundedScrollPosition = __webpack_require__(110);
 
 /**
  * Find the deepest React component completely containing the root of the
@@ -19120,7 +19336,7 @@ var ReactEventListener = {
 module.exports = ReactEventListener;
 
 /***/ }),
-/* 150 */
+/* 152 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19159,7 +19375,7 @@ var ReactHostOperationHistoryHook = {
 module.exports = ReactHostOperationHistoryHook;
 
 /***/ }),
-/* 151 */
+/* 153 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19176,7 +19392,7 @@ module.exports = ReactHostOperationHistoryHook;
 
 
 var DOMProperty = __webpack_require__(14);
-var EventPluginHub = __webpack_require__(22);
+var EventPluginHub = __webpack_require__(23);
 var EventPluginUtils = __webpack_require__(36);
 var ReactComponentEnvironment = __webpack_require__(39);
 var ReactEmptyComponent = __webpack_require__(64);
@@ -19198,7 +19414,7 @@ var ReactInjection = {
 module.exports = ReactInjection;
 
 /***/ }),
-/* 152 */
+/* 154 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19241,7 +19457,7 @@ module.exports = ReactInvalidSetStateWarningHook;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 153 */
+/* 155 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19257,7 +19473,7 @@ module.exports = ReactInvalidSetStateWarningHook;
 
 
 
-var adler32 = __webpack_require__(175);
+var adler32 = __webpack_require__(177);
 
 var TAG_END = /\/?>/;
 var COMMENT_START = /^<\!\-\-/;
@@ -19296,7 +19512,7 @@ var ReactMarkupChecksum = {
 module.exports = ReactMarkupChecksum;
 
 /***/ }),
-/* 154 */
+/* 156 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19315,15 +19531,15 @@ module.exports = ReactMarkupChecksum;
 var _prodInvariant = __webpack_require__(3);
 
 var ReactComponentEnvironment = __webpack_require__(39);
-var ReactInstanceMap = __webpack_require__(24);
+var ReactInstanceMap = __webpack_require__(25);
 var ReactInstrumentation = __webpack_require__(9);
 
 var ReactCurrentOwner = __webpack_require__(12);
-var ReactReconciler = __webpack_require__(19);
-var ReactChildReconciler = __webpack_require__(126);
+var ReactReconciler = __webpack_require__(20);
+var ReactChildReconciler = __webpack_require__(128);
 
 var emptyFunction = __webpack_require__(10);
-var flattenChildren = __webpack_require__(179);
+var flattenChildren = __webpack_require__(181);
 var invariant = __webpack_require__(1);
 
 /**
@@ -19752,7 +19968,7 @@ module.exports = ReactMultiChild;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 155 */
+/* 157 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19852,7 +20068,7 @@ module.exports = ReactOwner;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 156 */
+/* 158 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19883,7 +20099,7 @@ module.exports = ReactPropTypeLocationNames;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 157 */
+/* 159 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20067,7 +20283,7 @@ module.exports = ReactReconcileTransaction;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 158 */
+/* 160 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20084,7 +20300,7 @@ module.exports = ReactReconcileTransaction;
 
 
 
-var ReactOwner = __webpack_require__(155);
+var ReactOwner = __webpack_require__(157);
 
 var ReactRef = {};
 
@@ -20161,7 +20377,7 @@ ReactRef.detachRefs = function (instance, element) {
 module.exports = ReactRef;
 
 /***/ }),
-/* 159 */
+/* 161 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20182,7 +20398,7 @@ var _assign = __webpack_require__(4);
 var PooledClass = __webpack_require__(15);
 var Transaction = __webpack_require__(30);
 var ReactInstrumentation = __webpack_require__(9);
-var ReactServerUpdateQueue = __webpack_require__(160);
+var ReactServerUpdateQueue = __webpack_require__(162);
 
 /**
  * Executed within the scope of the `Transaction` instance. Consider these as
@@ -20257,7 +20473,7 @@ module.exports = ReactServerRenderingTransaction;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 160 */
+/* 162 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20402,7 +20618,7 @@ module.exports = ReactServerUpdateQueue;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 161 */
+/* 163 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20421,7 +20637,7 @@ module.exports = ReactServerUpdateQueue;
 module.exports = '15.4.2';
 
 /***/ }),
-/* 162 */
+/* 164 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20728,7 +20944,7 @@ Object.keys(ATTRS).forEach(function (key) {
 module.exports = SVGDOMPropertyConfig;
 
 /***/ }),
-/* 163 */
+/* 165 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20744,7 +20960,7 @@ module.exports = SVGDOMPropertyConfig;
 
 
 
-var EventPropagators = __webpack_require__(23);
+var EventPropagators = __webpack_require__(24);
 var ExecutionEnvironment = __webpack_require__(6);
 var ReactDOMComponentTree = __webpack_require__(5);
 var ReactInputSelection = __webpack_require__(67);
@@ -20924,7 +21140,7 @@ var SelectEventPlugin = {
 module.exports = SelectEventPlugin;
 
 /***/ }),
-/* 164 */
+/* 166 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20944,19 +21160,19 @@ module.exports = SelectEventPlugin;
 var _prodInvariant = __webpack_require__(3);
 
 var EventListener = __webpack_require__(56);
-var EventPropagators = __webpack_require__(23);
+var EventPropagators = __webpack_require__(24);
 var ReactDOMComponentTree = __webpack_require__(5);
-var SyntheticAnimationEvent = __webpack_require__(165);
-var SyntheticClipboardEvent = __webpack_require__(166);
+var SyntheticAnimationEvent = __webpack_require__(167);
+var SyntheticClipboardEvent = __webpack_require__(168);
 var SyntheticEvent = __webpack_require__(13);
-var SyntheticFocusEvent = __webpack_require__(169);
-var SyntheticKeyboardEvent = __webpack_require__(171);
+var SyntheticFocusEvent = __webpack_require__(171);
+var SyntheticKeyboardEvent = __webpack_require__(173);
 var SyntheticMouseEvent = __webpack_require__(29);
-var SyntheticDragEvent = __webpack_require__(168);
-var SyntheticTouchEvent = __webpack_require__(172);
-var SyntheticTransitionEvent = __webpack_require__(173);
-var SyntheticUIEvent = __webpack_require__(25);
-var SyntheticWheelEvent = __webpack_require__(174);
+var SyntheticDragEvent = __webpack_require__(170);
+var SyntheticTouchEvent = __webpack_require__(174);
+var SyntheticTransitionEvent = __webpack_require__(175);
+var SyntheticUIEvent = __webpack_require__(26);
+var SyntheticWheelEvent = __webpack_require__(176);
 
 var emptyFunction = __webpack_require__(10);
 var getEventCharCode = __webpack_require__(43);
@@ -21158,7 +21374,7 @@ module.exports = SimpleEventPlugin;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 165 */
+/* 167 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21202,7 +21418,7 @@ SyntheticEvent.augmentClass(SyntheticAnimationEvent, AnimationEventInterface);
 module.exports = SyntheticAnimationEvent;
 
 /***/ }),
-/* 166 */
+/* 168 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21245,7 +21461,7 @@ SyntheticEvent.augmentClass(SyntheticClipboardEvent, ClipboardEventInterface);
 module.exports = SyntheticClipboardEvent;
 
 /***/ }),
-/* 167 */
+/* 169 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21286,7 +21502,7 @@ SyntheticEvent.augmentClass(SyntheticCompositionEvent, CompositionEventInterface
 module.exports = SyntheticCompositionEvent;
 
 /***/ }),
-/* 168 */
+/* 170 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21327,7 +21543,7 @@ SyntheticMouseEvent.augmentClass(SyntheticDragEvent, DragEventInterface);
 module.exports = SyntheticDragEvent;
 
 /***/ }),
-/* 169 */
+/* 171 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21343,7 +21559,7 @@ module.exports = SyntheticDragEvent;
 
 
 
-var SyntheticUIEvent = __webpack_require__(25);
+var SyntheticUIEvent = __webpack_require__(26);
 
 /**
  * @interface FocusEvent
@@ -21368,7 +21584,7 @@ SyntheticUIEvent.augmentClass(SyntheticFocusEvent, FocusEventInterface);
 module.exports = SyntheticFocusEvent;
 
 /***/ }),
-/* 170 */
+/* 172 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21410,7 +21626,7 @@ SyntheticEvent.augmentClass(SyntheticInputEvent, InputEventInterface);
 module.exports = SyntheticInputEvent;
 
 /***/ }),
-/* 171 */
+/* 173 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21426,10 +21642,10 @@ module.exports = SyntheticInputEvent;
 
 
 
-var SyntheticUIEvent = __webpack_require__(25);
+var SyntheticUIEvent = __webpack_require__(26);
 
 var getEventCharCode = __webpack_require__(43);
-var getEventKey = __webpack_require__(180);
+var getEventKey = __webpack_require__(182);
 var getEventModifierState = __webpack_require__(44);
 
 /**
@@ -21499,7 +21715,7 @@ SyntheticUIEvent.augmentClass(SyntheticKeyboardEvent, KeyboardEventInterface);
 module.exports = SyntheticKeyboardEvent;
 
 /***/ }),
-/* 172 */
+/* 174 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21515,7 +21731,7 @@ module.exports = SyntheticKeyboardEvent;
 
 
 
-var SyntheticUIEvent = __webpack_require__(25);
+var SyntheticUIEvent = __webpack_require__(26);
 
 var getEventModifierState = __webpack_require__(44);
 
@@ -21549,7 +21765,7 @@ SyntheticUIEvent.augmentClass(SyntheticTouchEvent, TouchEventInterface);
 module.exports = SyntheticTouchEvent;
 
 /***/ }),
-/* 173 */
+/* 175 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21593,7 +21809,7 @@ SyntheticEvent.augmentClass(SyntheticTransitionEvent, TransitionEventInterface);
 module.exports = SyntheticTransitionEvent;
 
 /***/ }),
-/* 174 */
+/* 176 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21652,7 +21868,7 @@ SyntheticMouseEvent.augmentClass(SyntheticWheelEvent, WheelEventInterface);
 module.exports = SyntheticWheelEvent;
 
 /***/ }),
-/* 175 */
+/* 177 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21701,7 +21917,7 @@ function adler32(data) {
 module.exports = adler32;
 
 /***/ }),
-/* 176 */
+/* 178 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21719,7 +21935,7 @@ module.exports = adler32;
 
 var _prodInvariant = __webpack_require__(3);
 
-var ReactPropTypeLocationNames = __webpack_require__(156);
+var ReactPropTypeLocationNames = __webpack_require__(158);
 var ReactPropTypesSecret = __webpack_require__(70);
 
 var invariant = __webpack_require__(1);
@@ -21794,7 +22010,7 @@ module.exports = checkReactTypeSpec;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 177 */
+/* 179 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21879,7 +22095,7 @@ module.exports = dangerousStyleValue;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 178 */
+/* 180 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21899,7 +22115,7 @@ var _prodInvariant = __webpack_require__(3);
 
 var ReactCurrentOwner = __webpack_require__(12);
 var ReactDOMComponentTree = __webpack_require__(5);
-var ReactInstanceMap = __webpack_require__(24);
+var ReactInstanceMap = __webpack_require__(25);
 
 var getHostComponentFromComposite = __webpack_require__(74);
 var invariant = __webpack_require__(1);
@@ -21945,7 +22161,7 @@ module.exports = findDOMNode;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 179 */
+/* 181 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22027,7 +22243,7 @@ module.exports = flattenChildren;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 180 */
+/* 182 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22134,7 +22350,7 @@ function getEventKey(nativeEvent) {
 module.exports = getEventKey;
 
 /***/ }),
-/* 181 */
+/* 183 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22180,7 +22396,7 @@ function getIteratorFn(maybeIterable) {
 module.exports = getIteratorFn;
 
 /***/ }),
-/* 182 */
+/* 184 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22206,7 +22422,7 @@ function getNextDebugID() {
 module.exports = getNextDebugID;
 
 /***/ }),
-/* 183 */
+/* 185 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22285,7 +22501,7 @@ function getNodeForCharacterOffset(root, offset) {
 module.exports = getNodeForCharacterOffset;
 
 /***/ }),
-/* 184 */
+/* 186 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22391,7 +22607,7 @@ function getVendorPrefixedEventName(eventName) {
 module.exports = getVendorPrefixedEventName;
 
 /***/ }),
-/* 185 */
+/* 187 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22422,7 +22638,7 @@ function quoteAttributeValueForBrowser(value) {
 module.exports = quoteAttributeValueForBrowser;
 
 /***/ }),
-/* 186 */
+/* 188 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22443,7 +22659,7 @@ var ReactMount = __webpack_require__(68);
 module.exports = ReactMount.renderSubtreeIntoContainer;
 
 /***/ }),
-/* 187 */
+/* 189 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22507,7 +22723,7 @@ var KeyEscapeUtils = {
 module.exports = KeyEscapeUtils;
 
 /***/ }),
-/* 188 */
+/* 190 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22625,7 +22841,7 @@ module.exports = PooledClass;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 189 */
+/* 191 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22641,11 +22857,11 @@ module.exports = PooledClass;
 
 
 
-var PooledClass = __webpack_require__(188);
+var PooledClass = __webpack_require__(190);
 var ReactElement = __webpack_require__(16);
 
 var emptyFunction = __webpack_require__(10);
-var traverseAllChildren = __webpack_require__(197);
+var traverseAllChildren = __webpack_require__(199);
 
 var twoArgumentPooler = PooledClass.twoArgumentPooler;
 var fourArgumentPooler = PooledClass.fourArgumentPooler;
@@ -22821,7 +23037,7 @@ var ReactChildren = {
 module.exports = ReactChildren;
 
 /***/ }),
-/* 190 */
+/* 192 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22845,7 +23061,7 @@ var ReactElement = __webpack_require__(16);
 var ReactPropTypeLocationNames = __webpack_require__(51);
 var ReactNoopUpdateQueue = __webpack_require__(50);
 
-var emptyObject = __webpack_require__(21);
+var emptyObject = __webpack_require__(22);
 var invariant = __webpack_require__(1);
 var warning = __webpack_require__(2);
 
@@ -23544,7 +23760,7 @@ module.exports = ReactClass;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 191 */
+/* 193 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23720,7 +23936,7 @@ module.exports = ReactDOMFactories;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 192 */
+/* 194 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24160,7 +24376,7 @@ module.exports = ReactPropTypes;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 193 */
+/* 195 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24181,7 +24397,7 @@ var _assign = __webpack_require__(4);
 var ReactComponent = __webpack_require__(49);
 var ReactNoopUpdateQueue = __webpack_require__(50);
 
-var emptyObject = __webpack_require__(21);
+var emptyObject = __webpack_require__(22);
 
 /**
  * Base class helpers for the updating state of a component.
@@ -24207,7 +24423,7 @@ ReactPureComponent.prototype.isPureReactComponent = true;
 module.exports = ReactPureComponent;
 
 /***/ }),
-/* 194 */
+/* 196 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24226,7 +24442,7 @@ module.exports = ReactPureComponent;
 module.exports = '15.4.2';
 
 /***/ }),
-/* 195 */
+/* 197 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24319,7 +24535,7 @@ module.exports = checkReactTypeSpec;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 196 */
+/* 198 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24363,7 +24579,7 @@ module.exports = onlyChild;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 197 */
+/* 199 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24386,7 +24602,7 @@ var REACT_ELEMENT_TYPE = __webpack_require__(80);
 
 var getIteratorFn = __webpack_require__(53);
 var invariant = __webpack_require__(1);
-var KeyEscapeUtils = __webpack_require__(187);
+var KeyEscapeUtils = __webpack_require__(189);
 var warning = __webpack_require__(2);
 
 var SEPARATOR = '.';
@@ -24545,83 +24761,31 @@ module.exports = traverseAllChildren;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 198 */
-/***/ (function(module, exports, __webpack_require__) {
+/* 200 */
+/***/ (function(module, exports) {
 
-"use strict";
+var g;
 
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
 
-var _react = __webpack_require__(86);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(85);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-var _ListBox = __webpack_require__(84);
-
-var _ListBox2 = _interopRequireDefault(_ListBox);
-
-var _items = __webpack_require__(83);
-
-var _items2 = _interopRequireDefault(_items);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-class App extends _react2.default.Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      items: _items2.default,
-      selectedIndex: 0
-    };
-  }
-
-  componentDidMount() {
-    this.refs.list.addEventListener('selected-index-changed', event => {
-      this.setState({
-        selectedIndex: event.detail.selectedIndex
-      });
-    });
-  }
-
-  render() {
-    const itemElements = this.state.items && this.state.items.map(item => _react2.default.createElement(
-      'div',
-      { key: item },
-      item
-    ));
-    return _react2.default.createElement(
-      'div',
-      null,
-      _react2.default.createElement(
-        'h1',
-        null,
-        'React app with an Elix list box'
-      ),
-      _react2.default.createElement(
-        'p',
-        null,
-        'Selection: ',
-        this.state.items[this.state.selectedIndex]
-      ),
-      _react2.default.createElement(
-        'sample-list-box',
-        {
-          ref: 'list',
-          'aria-label': 'Fruits',
-          'selected-index': this.state.selectedIndex,
-          style: { height: "295px", maxWidth: "400px" } },
-        itemElements
-      )
-    );
-  }
-
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1,eval)("this");
+} catch(e) {
+	// This works if the window reference is available
+	if(typeof window === "object")
+		g = window;
 }
 
-_reactDom2.default.render(_react2.default.createElement(App, null), document.querySelector('#root'));
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
 
 /***/ })
 /******/ ]);
