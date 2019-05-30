@@ -9,7 +9,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     // Our initial state will include a default set of items loaded from
-    // elsewhere, and select the 0th item by defaul.t
+    // elsewhere, and select the 0th item by default.
     this.state = {
       items,
       selectedIndex: 0
