@@ -1,22 +1,17 @@
 {
-  "name": "react-demos",
+  "name": "react-example",
   "version": "1.0.0",
   "license": "MIT",
   "devDependencies": {
-    "babel-cli": "^6.22.2",
-    "babel-core": "^6.22.1",
-    "babel-loader": "^6.2.10",
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.22.0",
-    "babel-plugin-transform-react-jsx": "^6.22.0",
-    "custom-elements": "webcomponents/custom-elements#master",
-    "elix": "git://github.com/JanMiksovsky/elix.git#list-box",
-    "react-dom": "^15.4.2",
-    "react": "^15.4.2",
-    "shadycss": "webcomponents/shadycss#master",
-    "shadydom": "webcomponents/shadydom#master",
-    "template": "webcomponents/template#master",
-    "webcomponents-platform": "webcomponents/webcomponents-platform#master",
-    "webpack": "^2.2.0"
+    "@babel/cli": "7.4.4",
+    "@babel/core": "7.4.5",
+    "@babel/preset-react": "7.0.0",
+    "babel-loader": "8.0.6",
+    "elix": "6.0.0",
+    "react-dom": "16.8.6",
+    "react": "16.8.6",
+    "webpack-cli": "3.3.2",
+    "webpack": "4.32.2"
   },
   "scripts": {
     "build": "webpack",

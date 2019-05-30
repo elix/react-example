@@ -4,13 +4,15 @@ module.exports = {
 
   entry: './src/app.jsx',
 
-	module: {
-		loaders: [
-			{
+  mode: 'development',
+
+  module: {
+    rules: [
+      {
+        exclude: /node_modules/,
 				test: /\.jsx?$/,
-				exclude: /node_modules/,
-				loader: 'babel-loader'
-			}
+        use: 'babel-loader'
+      }
     ]
   },
 
