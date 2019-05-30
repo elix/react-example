@@ -28,7 +28,7 @@ Load the source file for the desired Elix component as a module. You can bundle 
 ```html
 <html>
   <head>
-    <script src="node_modules/elix/src/ListBox.js"></script>
+    <script type="module" src="node_modules/elix/src/ListBox.js"></script>
   </head>
   <body>
     <elix-list-box aria-label="Fruits" style="height: 250px; max-width: 300px">
