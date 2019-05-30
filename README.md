@@ -76,4 +76,4 @@ class App extends React.Component {
 }
 ```
 
-In JSX, you can reference the component by its tag name. You can then pass data to it as attributes. The sample above sets both the standard `aria-label` attribute and the custom `selected-index` attribute, which sets the `ListBox`'s `selectedIndex` property to the desired index.
+In JSX, you can reference the component by its tag name. You can then pass data to it as attributes. The sample above sets both the standard `aria-label` attribute and the custom `selected-index` attribute, which sets the `ListBox`'s `selectedIndex` property to the desired index. Normally your React application would track the `selectedIndex` as state and update that state by listening to an event on the `ListBox`; see `src/app.jsx` for more complete sample source code.
