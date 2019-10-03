@@ -1,4 +1,4 @@
-import 'elix/src/ListBox';
+import 'elix/define/ListBox';
 import items from './items';
 import React from 'react';
 import ReactDOM from 'react-dom';
