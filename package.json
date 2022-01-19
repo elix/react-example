@@ -3,15 +3,15 @@
   "version": "1.0.0",
   "license": "MIT",
   "devDependencies": {
-    "@babel/cli": "7.4.4",
-    "@babel/core": "7.4.5",
-    "@babel/preset-react": "7.0.0",
-    "babel-loader": "8.0.6",
-    "elix": "11.0.1",
-    "react-dom": "16.8.6",
-    "react": "16.8.6",
-    "webpack-cli": "3.3.2",
-    "webpack": "4.32.2"
+    "@babel/cli": "7.16.8",
+    "@babel/core": "7.16.7",
+    "@babel/preset-react": "7.16.7",
+    "babel-loader": "8.2.3",
+    "elix": "15.0.1",
+    "react-dom": "17.0.2",
+    "react": "17.0.2",
+    "webpack-cli": "4.9.1",
+    "webpack": "5.66.0"
   },
   "scripts": {
     "build": "webpack",
